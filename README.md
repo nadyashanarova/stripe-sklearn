@@ -202,17 +202,6 @@ Each estimator has its own test file (`tests/test_linear_l.py`,
 behavior, deterministic training, and numerical parity against the
 reference implementation in `references/`.
 
-## Further documentation
-
-For the mathematical analysis behind each estimator (equation-by-equation
-comparison against the paper) and the full rationale behind every
-design decision, see:
-
-- [`MATH_AUDIT.md`](MATH_AUDIT.md) — mathematical audit of the reference
-  implementations against the paper.
-- [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md) — implementation
-  decisions and the complete list of deviations from the reference
-  code.
 
 ## License
 
