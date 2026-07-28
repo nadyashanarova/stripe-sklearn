@@ -1,0 +1,2101 @@
+%% 
+%% Copyright 2019-2024 Elsevier Ltd
+%% 
+%% This file is part of the 'CAS Bundle'.
+%% --------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.3c of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'CAS Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for cas-sc documentclass for 
+%% double column output.
+
+\documentclass[a4paper,fleqn]{cas-sc}
+
+\usepackage[authoryear,longnamesfirst]{natbib}
+\usepackage{xcolor}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}{Remark}
+\newtheorem{definition}{Definition}
+
+% \begin{document}
+
+% % If the frontmatter runs over more than one page
+% % use the longmktitle option.
+
+% %\documentclass[a4paper,fleqn,longmktitle]{cas-sc}
+
+% %\usepackage[numbers]{natbib}
+% %\usepackage[authoryear]{natbib}
+% \usepackage[authoryear,longnamesfirst]{natbib}
+\usepackage{xcolor}
+% % \usepackage[russian]{babel}
+
+% %%%Author macros
+% \def\tsc#1{\csdef{#1}{\textsc{\lowercase{#1}}\xspace}}
+% \tsc{WGM}
+% \tsc{QE}
+% %%%
+
+% % Uncomment and use as if needed
+% \newtheorem{theorem}{Theorem}
+% \newtheorem{lemma}[theorem]{Lemma}
+% \newdefinition{rmk}{Remark}
+% %\newdefinition{rmk}{Remark}
+% \usepackage{amsthm}
+% \newtheorem{remark}{Remark}
+% \newtheorem{definition}{Definition}
+% \newproof{pf}{Proof}
+% \newproof{pot}{Proof of Theorem \ref{thm}}
+
+\begin{document}
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{.001}
+
+% Short title
+\shorttitle{}    
+
+% Short author
+\shortauthors{}  
+
+% Main title of the paper
+\title [mode = title]{Beyond Gradient Descent: Yakubovich’s Stripe Algorithms for Finite-Update Learning}  
+
+% Title footnote mark
+% eg: \tnotemark[1]
+\tnotemark[1] 
+
+% Title footnote 1.
+% eg: \tnotetext[1]{Title footnote text}
+\tnotetext[1]{} 
+
+% First author
+%
+% Options: Use if required
+% eg: \author[1,3]{Author Name}[type=editor,
+%       style=chinese,
+%       auid=000,
+%       bioid=1,
+%       prefix=Sir,
+%       orcid=0000-0000-0000-0000,
+%       facebook=<facebook id>,
+%       twitter=<twitter id>,
+%       linkedin=<linkedin id>,
+%       gplus=<gplus id>]
+
+\author[1]{}%[<options>]
+
+% Corresponding author indication
+\cormark[1]
+
+% Footnote of the first author
+\fnmark[1]
+
+% Email id of the first author
+\ead{}
+
+% URL of the first author
+\ead[url]{}
+
+% Credit authorship
+% eg: \credit{Conceptualization of this study, Methodology, Software}
+\credit{}
+
+% Address/affiliation
+\affiliation[1]{organization={},
+            addressline={}, 
+            city={},
+%          citysep={}, % Uncomment if no comma needed between city and postcode
+            postcode={}, 
+            state={},
+            country={}}
+
+\author[2]{}%[]
+
+% Footnote of the second author
+\fnmark[2]
+
+% Email id of the second author
+\ead{}
+
+% URL of the second author
+\ead[url]{}
+
+% Credit authorship
+\credit{}
+
+% Address/affiliation
+\affiliation[2]{organization={},
+            addressline={}, 
+            city={},
+%          citysep={}, % Uncomment if no comma needed between city and postcode
+            postcode={}, 
+            state={},
+            country={}}
+
+% Corresponding author text
+\cortext[1]{Corresponding author}
+
+% Footnote text
+\fntext[1]{}
+
+% For a title note without a number/mark
+%\nonumnote{}
+
+% Projection-based algorithms based on recurrent systems of linear inequalities, commonly known as Stripe algorithms introduced by V. A. Yakubovich, have been extensively studied in control theory but remain largely unexplored in modern machine learning, particularly for nonlinear models.
+% Projection-based algorithms based on recurrent systems of linear inequalities, commonly known as Stripe algorithms introduced by V. A. Yakubovich, have been extensively studied in control theory but \textcolor{red}{remain largely unexplored in modern machine learning, particularly for kernel-based learning methods and nonlinear decision functions.}
+
+% Here goes the abstract
+\begin{abstract}
+Projection-based algorithms based on recurrent systems of linear inequalities, \textcolor{red}{commonly known as Stripe algorithms, originate in the study of V. A. Yakubovich on finitely convergent learning procedures for pattern recognition and binary classification. Although Yakubovich already considered such methods in the early development of machine learning, including their connection to perceptron-type learning through his eponymous algorithm YAVA, they have received relatively little attention in the modern machine learning literature, especially in the context of kernel methods and nonlinear decision functions.}
+
+
+In this paper, we show that such methods can be naturally formulated within standard supervised learning settings. We consider two complementary learning formulations: an $L$-system, related to squared-loss optimization via relaxed optimality conditions, and a $C$-system, defined by pointwise tolerance constraints on predictions.
+
+Unlike traditional gradient-based optimizers, Stripe algorithms are governed by iterative projection updates that trigger only upon constraint violation. Under strict feasibility assumptions, the framework admits theoretical guarantees for finite-update convergence, yielding stable and predictable training dynamics that eliminate the need for learning-rate scheduling or heuristic early stopping.
+
+% We also introduce a kernelized extension of the framework, which enables nonlinear learning by operating in the space of kernel expansion coefficients while preserving the original projection-based update scheme.
+
+
+We also introduce a kernelized extension of the framework, which \textcolor{red}{enables nonlinear decision functions through kernel representations} by operating in the space of kernel expansion coefficients while preserving the original projection-based update scheme.
+
+Experiments on a broad collection of real-world tabular OpenML datasets demonstrate that Stripe algorithms achieve performance comparable to, and in many cases outperform, strong standard linear and kernel baselines, including SGD and kernel SVM, while exhibiting structured and sparse update dynamics. These results position Stripe algorithms as a simple, stable, and resource-efficient alternative to conventional optimization-based learning methods.
+
+\end{abstract}
+
+% Use if graphical abstract is present
+%\begin{graphicalabstract}
+%\includegraphics{}
+%\end{graphicalabstract}
+
+% Research highlights
+% \begin{highlights}
+% \item 
+% \item 
+% \item 
+% \end{highlights}
+
+
+% Keywords
+% Each keyword is seperated by \sep
+\begin{keywords}
+linear inequalities \sep  Stripe algorithm \sep Kernel extensions \sep Projection methods \sep Finite convergence
+\sep Supervised learning 
+\end{keywords}
+
+\maketitle
+
+% Main text
+% \section{}\label{}
+
+% Numbered list
+% Use the style of numbering in square brackets.
+% If nothing is used, default style will be taken.
+%\begin{enumerate}[a)]
+%\item 
+%\item 
+%\item 
+%\end{enumerate}  
+
+% Unnumbered list
+%\begin{itemize}
+%\item 
+%\item 
+%\item 
+%\end{itemize}  
+
+% Description list
+%\begin{description}
+%\item[]
+%\item[] 
+%\item[] 
+%\end{description}  
+
+% \clearpage %%Remove this from your manuscript
+
+
+% % Figure
+% \begin{figure}%[]
+%   \centering
+% %    \includegraphics{}
+%     \caption{}\label{fig1}
+% \end{figure}
+
+
+% \begin{table}%[]
+% \caption{}\label{tbl1}
+% \begin{tabular*}{\tblwidth}{@{}LL@{}}
+% \toprule
+%   &  \\ % Table header row
+% \midrule
+%  & \\
+%  & \\
+%  & \\
+%  & \\
+% \bottomrule
+% \end{tabular*}
+% \end{table}
+
+% % Uncomment and use as the case may be
+% %\begin{theorem} 
+% %\end{theorem}
+
+% % Uncomment and use as the case may be
+% %\begin{lemma} 
+% %\end{lemma}
+
+% %% The Appendices part is started with the command \appendix;
+% %% appendix sections are then done as normal sections
+% %% \appendix
+
+% \section{}\label{}
+\section{Introduction}
+\label{sec:intro}
+
+
+In supervised learning, model parameters are traditionally determined by minimizing
+the empirical risk using gradient-based methods.
+
+Despite their broad applicability, such approaches typically require careful tuning of algorithmic hyperparameters, including the learning rate, learning-rate schedules, regularization strength, and stopping criteria.
+Moreover, in online (streaming) settings, gradient-based methods may be sensitive
+to noise and to the order in which training examples are presented.
+
+In contrast, the Stripe framework considered in this work is based on Yakubovich’s method of recurrent objective inequalities and relies on tolerance and relaxation parameters that define admissible hyperslab regions in the parameter space; these parameters regulate feasibility of the constraint system rather than the optimization trajectory and therefore differ in nature from learning-rate tuning, scheduling, and early stopping used in gradient-based methods.
+
+% These parameters control feasibility rather than optimization dynamics, and their role and interpretation differ from those of learning-rate tuning, scheduling, and early stopping heuristics.
+
+These practical drawbacks motivate interest in alternative learning paradigms in which parameter updates are driven by explicit feasibility requirements rather than by repeated minimization of a smooth loss function.
+In such formulations, training is guided by constraint satisfaction conditions,
+and parameter corrections are applied when these conditions are violated, rather than being defined purely by gradient steps \cite{detassis2021teachingolddognew, peters2023cqnetconvexgeometricinterpretationconstraining}.
+
+Constraint-based formulations interpret learning as the problem of satisfying a system of constraints that defines an admissible region in parameter or output space. In such settings, the goal is not necessarily the minimization of a smooth global loss function, but rather the attainment of feasibility with respect to a collection of equalities or inequalities.
+
+In Yakubovich’s formulation~\cite{Yakubovich1966Recurrent}, these constraints take the form of hyperslabs in parameter space, and learning proceeds through successive projections driven by constraint violations. Related ideas appear in more recent machine learning frameworks. For example, CQNet formulates training as a split feasibility problem, seeking a parameter vector $x$ such that $x \in C$ and $Ax \in Q$, thereby interpreting learning as motion toward the intersection of convex sets in parameter and output spaces~\cite{peters2023cqnetconvexgeometricinterpretationconstraining}. 
+
+Similarly, the Moving Targets framework~\cite{detassis2021teachingolddognew} introduces a master–student scheme in which a dedicated correction step enforces prediction constraints before the model parameters are updated to fit the corrected targets. In this setting, constraint satisfaction may take precedence over pure loss minimization.
+
+
+% In this study, we investigate projection-based learning algorithms defined through recurrent objective inequalities, known as Stripe algorithms, originally proposed by V. A. Yakubovich \cite{Yakubovich1965,Yakubovich1966Recurrent}. 
+% \textcolor{red}{Historically, these algorithms were closely connected with early learning problems in pattern recognition and binary classification. In particular, Yakubovich considered finitely convergent procedures for constructing separating hyperplanes and adjusting perceptron-type decision rules. YAVA may be viewed in this line as a projection-based learning algorithm for perceptron weight adjustment  \cite{Yakubovich1966Recurrent}. }
+% These methods were further developed in control theory and adaptive systems \cite{Fomin1976,Fomin1981}.
+% In modern machine learning literature, such methods appear relatively rarely. However, there are works where the Stripe algorithm is applied to linear model training and online learning and is compared with standard gradient-based methods. These studies report competitive accuracy and fast convergence compared to linear models trained with stochastic gradient descent \cite{LIPKOVICH2022138, Lipkovich2023StripeEEG}.
+
+In this study, we investigate projection-based learning algorithms defined through recurrent objective inequalities, known as Stripe algorithms, originally proposed by V. A. Yakubovich \cite{Yakubovich1965,Yakubovich1966Recurrent}. 
+\textcolor{red}{Historically, these algorithms were closely connected with early learning problems in pattern recognition and binary classification. Yakubovich's early work considered finitely convergent procedures for constructing separating hyperplanes and for adjusting perceptron-type decision rules. The YAVA algorithm is described geometrically as a projection of the current weight vector onto a hyperplane associated with a newly presented image, and related algorithms are discussed as generalizations of the Rosenblatt perceptron \cite{Yakubovich1966Recurrent,FradkovShepel2022}. This places Stripe algorithms in the same historical line of feasibility-based classification procedures, perceptron-type learning, and recurrent objective inequalities.}These methods were further developed in control theory and adaptive systems \cite{Fomin1976,Fomin1981}.
+In modern machine learning literature, such methods appear relatively rarely. However, there are works where the Stripe algorithm is applied to linear model training and online learning and is compared with standard gradient-based methods. These studies report competitive accuracy and fast convergence compared to linear models trained with stochastic gradient descent \cite{LIPKOVICH2022138,Lipkovich2023StripeEEG}.
+
+% \textcolor{red}{ The historical roots of Stripe algorithms are closely related to early developments in machine learning and pattern recognition. Yakubovich's work was formulated in the context of learning classification rules based on separating hyperplanes and perceptron-type models. In this perspective, YAVA and related projection-based algorithms belong to the same historical line of development as early perceptron learning methods and feasibility-based classification procedures \cite{FradkovShepel2022}.}
+
+V.A. Yakubovich introduced several ways to reduce learning problems to systems of parameter inequalities, including constraints derived from relaxed stationarity conditions of a quadratic loss function and constraints defined through pointwise bounds on the prediction error \cite{Yakubovich1966Recurrent}. Following Yakubovich’s terminology, we refer to these two types of constraint systems as the $L$-system and the $C$-system, respectively. Both formulations lead to systems of linear inequalities and employ a common projection-based parameter update mechanism, differing only in the source of the constraints. 
+
+Unlike gradient-based methods, Stripe algorithms update the parameters only when the corresponding constraint is violated, and each update is performed as a projection correction. In the linear case, under strict feasibility of the constraint system, a finite number of updates can be guaranteed \cite{Yakubovich1966Recurrent}.
+
+In practice, this often leads to stable and predictable learning dynamics and lower sensitivity to step-size selection compared to gradient methods. Stripe algorithms still use their own tolerance parameters and stopping rules, but the update mechanism itself is not based on learning-rate scheduling. The behavior of the algorithms in noisy settings, where strict feasibility is violated, is discussed in a later section.
+
+% In addition, we consider a kernelized extension of the framework,
+% which enables the application of Stripe algorithms to nonlinear models.
+\textcolor{red}{In addition, we consider a kernelized extension of the framework. In this setting, the Stripe constraints and projection-based updates are transferred to kernel representations, enabling nonlinear decision functions in the original input space while preserving the same update scheme.}
+
+
+In this setting, learning is performed in the space of kernel expansion coefficients, while preserving the projection-based form of the updates and enabling fully iterative training, in contrast to standard SVM solvers that typically rely on batch optimization of a fixed objective.
+
+
+We empirically evaluate the proposed approach on a broad collection of real-world tabular datasets from OpenML{\footnote{https://www.openml.org}}. Our task selection partially overlaps with the benchmark suites of \cite{bischl2021openmlbenchmarkingsuites} and the OpenML AutoML Benchmark \cite{gijsbers2019opensourceautomlbenchmark}. We compare Stripe algorithms with strong standard baseline methods, including SGD and SVMs, and show that the projection-based approach achieves competitive performance and in many cases outperforms these baselines while maintaining a simple and robust implementation.
+
+The paper is organized as follows. In Section~\ref{sec:problem}, we formally introduce the supervised learning problem
+and describe two basic formulations—the $L$- and $C$-systems—which form the foundation
+of the projection-based approach.
+In Section~\ref{sec:stripe_algorithms}, we present a unified Stripe algorithmic framework,
+including the canonical form of the constraints, a geometric interpretation,
+and variants of projection-based updates.
+Theoretical properties, including conditions for a finite number of updates,
+are discussed in the corresponding section and in the appendix.
+In Section~\ref{sec:kernel_methods_sec}, \textcolor{red}{we consider a kernelized extension of the proposed approach, which enables nonlinear decision functions through kernel representations.}
+An experimental evaluation on real-world tabular OpenML datasets is presented in
+Section~\ref{sec:experiments}, where Stripe algorithms are compared with standard baseline methods.
+
+
+The implementation of the proposed Stripe algorithms is publicly available at: \url{https://github.com/nadyashanarova/yakubovich-stripe-learning}.
+
+\section{Problem Setting}
+\label{sec:problem}
+\subsection{Supervised learning setup}
+
+We consider a standard supervised learning setting.
+Let
+$
+\mathcal{D} = \{(x_i, y_i)\}_{i=1}^{m}
+$, or, in the online setting, an unbounded stream $\{(x_i, y_i)\}_{i=1}^{\infty}$
+denote the training data, where
+$
+x_i \in \mathcal{X} \subseteq \mathbb{R}^n, y_i \in \mathcal{Y},
+$
+with $\mathcal{X}$ denoting the input space and $\mathcal{Y}$ the output (label) space. Here, $x_i$ is an input feature vector and $y_i$ the corresponding target value.
+
+We consider a parametric model $f : \mathcal{X} \times \Theta \to \mathbb{R}$ with trainable parameter vector $\theta \in \Theta \subseteq \mathbb{R}^p$.
+In general, the supervised learning setting encompasses both regression and classification problems. 
+In regression, $\mathcal{Y} \subseteq \mathbb{R}$, and the model output $f(x,\theta)$ is interpreted directly as a numerical prediction.
+In classification, $\mathcal{Y}$ is a finite set of class labels, and the model defines a real-valued scoring function whose value is mapped to a class decision.
+
+In this work, however, the proposed projection-based Stripe framework and all subsequent theoretical developments are considered \emph{exclusively} for binary classification problems.
+Accordingly, we assume that $y_i \in \{-1,+1\}$.
+Regression problems are mentioned only as part of the general supervised learning context and are not addressed algorithmically in this paper.
+
+Model parameters are estimated iteratively using a projection-based learning procedure. We denote by $\theta_k$ the parameter vector at iteration $k$ and assume that the algorithm is initialized from an arbitrary initial estimate $\theta_1 \in \mathbb{R}^n$ (for example, $\theta_1 = \mathbf{0}$).
+
+
+In the binary classification setting, the learned scoring function
+is converted into a class prediction using a thresholding rule
+\begin{equation}
+\hat{y}(x) = \mathrm{sign}\bigl(f(x,\theta) - \tau\bigr),
+\end{equation}
+where $\tau \in \mathbb{R}$ is a classification threshold.
+The threshold $\tau$ is selected using a validation set and does not participate
+in the training dynamics of the model.
+
+
+In the linear setting, we consider a model that is linear in the input features and takes the form
+$
+f(x,\theta) = \langle \theta, x \rangle,
+$
+where $\langle \cdot, \cdot \rangle$ denotes the standard inner product in $\mathbb{R}^n$.
+In this case, the model output is a linear function of the input vector $x$.
+
+Although extending linear models with manually constructed nonlinear features,
+such as polynomial expansions, can increase their expressive power,
+this approach typically requires careful selection of the feature degree
+and quickly suffers from the curse of dimensionality when features are generated explicitly \cite{bishop:2006:PRML, Hastie+al:2009}.
+
+
+To model nonlinear relationships between the input features and the target variable in a principled and scalable manner, we employ a mapping of the input data into an extended, potentially high-dimensional, feature space, as discussed in Section \ref{sec:kernel_methods_sec}.
+
+\subsection{$L$-systems: learning as relaxed optimality}
+
+The first basic formulation corresponds to the minimization of a quadratic loss function.
+For a finite training dataset $\mathcal{D}$, this leads to the empirical risk
+$
+Q(\theta)
+=
+\frac{1}{m}\sum_{i=1}^{m}
+\bigl(y_i - f(x_i,\theta)\bigr)^2.
+$
+
+In the standard optimization setting, the parameter vector $\theta$
+is determined from the stationarity condition
+$\nabla_\theta Q(\theta)=\mathbf{0}$. 
+
+Following the classical formulation introduced by Yakubovich~\cite{Yakubovich1966Recurrent},
+we adopt a \emph{relaxed} version of the first-order optimality condition:
+instead of enforcing exact stationarity,
+small deviations of the gradient components from zero are allowed.
+
+In this formulation, learning is posed as the satisfaction of a system of inequality constraints,
+commonly referred to as an $L$-system in the classical literature.
+
+
+In particular, the relaxed optimality conditions can be written explicitly as
+
+\begin{equation}
+\label{eq:L_relaxed_stationarity}
+\left|
+\frac{\partial Q(\theta)}{\partial \theta_j}
+\right|
+\le
+\varepsilon,
+\qquad
+j = 1, \dots, n,
+\end{equation}
+where $\varepsilon > 0$ is a prescribed tolerance.
+
+
+The tolerance parameter $\varepsilon$ specifies the admissible deviation from exact first-order optimality and defines the width of the corresponding hyperslab constraints in the parameter space.
+In~\cite{Yakubovich1966Recurrent}, $\varepsilon$ reflects the level of irreducible error or noise in the data and controls feasibility rather than optimization accuracy.
+
+In this study, $\varepsilon$ is treated as a problem-dependent hyperparameter; its practical selection is discussed in Section~\ref{sec:experiments}.
+
+
+As will be shown in Section~\ref{sec:stripe_algorithms}, for a linear parametrization
+$f(x,\theta) = \langle \theta, x \rangle$, the relaxed optimality conditions~\eqref{eq:L_relaxed_stationarity} are equivalent to a system of linear inequalities in canonical form.
+These inequalities define stripe-shaped (hyperslab) constraints
+in the parameter space, which can be processed using projection-based algorithms.
+
+
+We refer to this constraint-based formulation as the \textbf{$L$-system}, following the terminology of the classical stripe algorithm literature. The $L$-system applies naturally to regression problems with a quadratic loss. When used for classification, the quadratic loss is employed as a surrogate objective for learning a real-valued scoring function; we do not consider a probabilistic or likelihood-based interpretation in this setting. From this viewpoint, the $L$-system provides a projection-based alternative
+to standard gradient optimization methods.
+
+
+\subsection{$C$-systems: learning as constraint satisfaction}
+
+
+The second basic formulation considered in this paper is based not on minimizing a functional,
+but on enforcing \emph{pointwise constraints} on the prediction error. Specifically, for each observation the model is required to satisfy
+$
+|y - f(x,\theta)| \le \varepsilon,
+$
+where $\varepsilon>0$ is a prescribed tolerance.
+
+Following the formulation introduced by Yakubovich, learning posed in this form corresponds to the satisfaction of a system of inequality constraints.
+Throughout the paper, we refer to this formulation as the \textbf{$C$-system}.
+
+
+In regression problems, it corresponds to uniform approximation
+within an $\varepsilon$-tube,
+while in classification problems it enforces control over the deviation
+of the prediction from the target label
+in terms of an $\varepsilon$-insensitive region.
+
+Unlike $L$-systems, the existence of a solution to a $C$-system
+is not guaranteed without additional assumptions
+and depends on the feasibility of the constraint set.
+Nevertheless, $C$-systems naturally arise in online learning scenarios
+and in settings where controlling the maximum error
+is more important than minimizing its mean squared value.
+
+
+\subsection{Kernelized extension}
+
+Although linear models are limited to representing linearly separable relationships
+in the original feature space, this limitation is traditionally addressed by kernel methods,
+which enable nonlinear decision functions through an implicit mapping to an extended feature space.
+
+In this work, we employ this classical idea in a different context and propose a
+kernelized extension of the projection-based Stripe framework.
+Unlike standard approaches, where kernelization is applied to gradient-based
+or loss-minimization algorithms, here it is used to transfer the system of stripe-shaped
+constraints and the associated projection-based updates to the space of kernel expansion
+coefficients.
+
+\textcolor{red}{This kernelized extension preserves the geometric interpretation and update structure of Stripe algorithms and allows the same projection-based scheme to be applied through kernel representations.}
+
+
+To model nonlinear dependencies between the input features and the target function,
+we employ the standard kernel construction based on an implicit mapping of the original
+feature space $\mathbb{R}^n$ into an extended (possibly infinite-dimensional)
+Hilbert feature space
+$
+\phi:\ \mathcal{X}\subseteq\mathbb{R}^n \to \mathcal{H}.
+$
+% This transformation does not alter the original learning formulation and serves purely
+% as a technical device for representing nonlinear models in a linear form.
+\textcolor{red}{This transformation does not alter the original learning formulation and serves purely as a technical device for representing nonlinear decision functions in a form that is linear in the feature-space parameters.}
+
+In this representation, the model takes the form
+$
+f(x,\theta)=\langle \theta,\phi(x)\rangle,
+$
+where $\theta$ denotes a parameter vector in the feature space $\mathcal{H}$.
+By the Representer Theorem (\cite{Scholkopf2002,Hofmann2008}), solutions of regularized empirical risk minimization problems in a reproducing kernel Hilbert space (RKHS) admit a finite kernel expansion representation. In particular, using the reproducing property of RKHS, the reproducing kernel $K:\mathcal{X}\times\mathcal{X}\to\mathbb{R}$ satisfies
+$
+K(x,x')=\langle \phi(x),\phi(x')\rangle_{\mathcal H},
+$
+and the model can be implemented without explicit computation of the feature mapping $\phi(x)$.
+
+The kernelized variant is therefore viewed as a practical extension that preserves the geometric interpretation and the projection-based update structure of Stripe algorithms in the space of kernel expansion coefficients.
+
+As shown below, both learning formulations (the $L$- and $C$-systems)
+lead to the sequential processing of stripe-shaped constraints
+in the parameter space and can be addressed
+within a unified projection-based algorithmic framework, referred to as Stripe.
+
+
+\section{Projection-Based Stripe Algorithms}
+\label{sec:stripe_algorithms}
+
+This section describes the projection-based Stripe algorithmic framework
+used to solve the systems of constraints arising from the $L$- and $C$-learning formulations.
+The exposition focuses on the canonical form of the constraints,
+the geometric interpretation of the updates,
+and a unified form of the projection step.
+
+
+\subsection{Canonical form of the constraints}
+
+Both the $L$- and $C$-formulations lead to the sequential processing
+of constraints of the canonical form
+\begin{equation}
+\label{eq:canonical_constraint}
+\bigl| \langle a_k, \theta \rangle + b_k \bigr| < \varepsilon,
+\qquad k = 1, 2, \ldots,
+\end{equation}
+where $a_k \in \mathbb{R}^n$ are coefficient vectors,
+$b_k \in \mathbb{R}$ are scalar offsets,
+and $\varepsilon > 0$ is a fixed tolerance.
+In the batch setting, the index set is finite ($k = 1, \dots, m$);
+the infinite index notation is used to accommodate the online case.
+
+\textcolor{red}{ Inequality ~\eqref{eq:canonical_constraint} defines a stripe-shaped admissible region in the parameter space. More precisely, the equality $\langle a_k,\theta\rangle+b_k=0$ defines the central hyperplane $H_k=\{\theta\in\mathbb{R}^n:\langle a_k,\theta\rangle+b_k=0\}$. The inequality $|\langle a_k,\theta\rangle+b_k|<\varepsilon$ defines the corresponding stripe, or hyperslab, $S_k=\{\theta\in\mathbb{R}^n:|\langle a_k,\theta\rangle+b_k|<\varepsilon\}$, bounded by the two parallel hyperplanes $\langle a_k,\theta\rangle+b_k=\pm\varepsilon$. Thus, a hyperplane corresponds to an exact equality constraint, whereas a stripe/hyperslab represents an admissible tolerance region around that hyperplane.}
+
+% We introduce the residual $\eta_k(\theta):=\langle a_k,\theta\rangle+b_k$, so that ~\eqref{eq:canonical_constraint} is equivalent to $|\eta_k(\theta)|<\varepsilon$.
+
+
+We introduce the residual
+\begin{equation}
+\label{eq:eta}
+\eta_k(\theta) := \langle a_k, \theta \rangle + b_k,
+\end{equation}
+so that~\eqref{eq:canonical_constraint} is equivalent to
+$|\eta_k(\theta)| < \varepsilon$.
+
+\subsubsection{Relation to the $C$- and $L$-formulations}
+
+In the $C$-system, each constraint is generated by a single observation.
+In the linear case $f(x,\theta) = \langle \theta, x \rangle$, we set
+$a_k = x_i,~b_k = -y_i$, which yields the residual
+$
+\eta_k(\theta)
+=
+\langle a_k, \theta \rangle + b_k
+=
+\langle \theta, x_i \rangle - y_i .
+$
+
+
+In the $L$-system, the constraints are derived from relaxed stationarity conditions of the quadratic loss function
+$
+Q(\theta)
+=
+\frac{1}{m}\sum_{i=1}^{m}\bigl(y_i-\langle\theta,x_i\rangle\bigr)^2 .
+$
+
+In the linear case, the gradient can be written in matrix form as
+$
+\nabla Q(\theta)
+=
+2\bigl(A^{(m)}\theta - b^{(m)}\bigr),
+$
+where
+$$
+A^{(m)} := \frac{1}{m}\sum_{i=1}^{m} x_i x_i^\top + \lambda I,
+\qquad
+b^{(m)} := \frac{1}{m}\sum_{i=1}^{m} y_i x_i.
+$$
+
+Applying relaxed component-wise constraints to $\nabla Q(\theta)$
+yields a system of linear inequalities of the canonical form~\eqref{eq:canonical_constraint},
+where the vectors $a_k$ correspond to rows of the matrix $A^{(m)}$,
+and the scalars $b_k$ are given by the corresponding components of $b^{(m)}$.
+
+
+% Geometrically, each constraint~\eqref{eq:canonical_constraint} defines a \emph{hyperslab} in the parameter space $\mathbb{R}^n$, bounded by two parallel hyperplanes $\eta_k(\theta) = \pm \varepsilon$.
+
+% \textcolor{red}{
+% A hyperplane is the set
+% $H_k=\{\theta\in\mathbb{R}^n:\langle a_k,\theta\rangle+b_k=0\}$.
+% The corresponding hyperslab is the region
+% $S_k=\{\theta\in\mathbb{R}^n:|\langle a_k,\theta\rangle+b_k|<\varepsilon\}$,
+% bounded by the two parallel hyperplanes
+% $\langle a_k,\theta\rangle+b_k=\pm\varepsilon$.}
+% \textcolor{red}{
+% Thus, a hyperplane corresponds to an exact equality constraint,
+% whereas a hyperslab represents an admissible tolerance region
+% around that hyperplane.
+% }
+
+\subsection{Unified projection step}
+
+Stripe algorithms perform parameter corrections \emph{only when the corresponding
+constraint is violated}.
+Learning is viewed as an iterative process of searching for a feasible parameter
+vector in the space $\mathbb{R}^n$.
+
+At each iteration, the current constraint of the canonical form $|\eta_k(\theta)| = \bigl|\langle a_k,\theta\rangle + b_k\bigr| < \varepsilon $ is evaluated. If the constraint is satisfied, no update is performed. Otherwise, a projection-based correction is applied.
+
+Formally, at iteration $k$, let
+$
+\eta_k(\theta_k)=\langle a_k,\theta_k\rangle+b_k
+$
+denote the residual associated with the current constraint.
+If $|\eta_k(\theta_k)| \ge \varepsilon$,
+the parameters are updated according to
+\begin{equation}
+\label{eq:general_update}
+\theta_{k+1}
+=
+\theta_k
+-
+\gamma_k
+\frac{\Psi\bigl(\eta_k(\theta_k),\varepsilon,\delta,\beta\bigr)}{\|a_k\|^2}\,a_k,
+\end{equation}
+
+% where $\varepsilon>0$ is the tolerance parameter defining the hyperslab width,
+% $\gamma_k$ is a relaxation parameter chosen from a bounded interval,
+% and $\Psi(\cdot)$ is a correction function. The additional parameters $\delta$ and $\beta$ are used in multizone correction schemes:
+% $\delta\in(0,\varepsilon)$ specifies the width of an intermediate buffer region
+% adjacent to the hyperslab boundary,
+% and $\beta\in(0,2]$ controls the correction magnitude within that region.
+% For specific choices of $\Psi$, some of these parameters may not be active.
+
+
+% Different variants of the Stripe algorithm correspond to different choices of the correction function $\Psi$ and the relaxation strategy for $\gamma_k$, while preserving the common projection-based structure of the updates.
+
+\textcolor{red}{where $\varepsilon > 0$ is the tolerance parameter defining the hyperslab width,
+$\gamma_k$ is a relaxation parameter, and $\Psi$ denotes a generic correction function.}
+
+\textcolor{red}{Equation~(5) serves as a unified template encompassing several
+Stripe algorithms. Different variants correspond to different
+choices of the correction function $\Psi$, while preserving the
+same projection-based update structure.}
+
+\textcolor{red}{The specific forms of the correction function $\Psi$
+considered in this study are introduced in the following sections:}
+\textcolor{red}{
+\begin{itemize}
+\item Basic Stripe algorithm (Section~3.4):
+      $\Psi(\eta)=\eta$;
+\item Improved Stripe algorithm (Section~3.5):
+      $\Psi(\eta)=\eta-\varepsilon\,\mathrm{sign}(\eta)$;
+\item Multizone $C$-system algorithm (Section~3.6):
+      $\Psi=\Psi_{\mathrm{mz}}$.
+\end{itemize}
+}
+\textcolor{red}{
+Additional parameters such as $\delta$ and $\beta$
+appear only in multizone correction schemes and are introduced
+in Section~\ref{subsec:C_systems}.}
+
+
+\subsection{Batch and online settings}
+
+
+The Stripe algorithm admits both a \emph{batch} formulation, in which the constraint system is induced by a fixed finite training dataset $\mathcal{D}=\{(x_i,y_i)\}_{i=1}^m$, and an \emph{online} (streaming) formulation, where observations are received sequentially and incrementally augment the set of constraints.
+
+The distinction between these two settings pertains solely to the manner in which constraints are generated and indexed.
+In the batch setting, the index set is finite and constraints are processed by iterating over this set, potentially using deterministic or randomized orderings.
+In the online setting, each incoming observation introduces a new constraint, which is incorporated and processed as soon as it becomes available.
+
+Crucially, this distinction does not affect the structure of the projection update in~\eqref{eq:general_update}.
+The update rule itself remains identical across settings; only the mechanism by which the constraint index $k$ is produced—either through iteration over a finite index set or through incremental index generation—differs between the batch and online formulations.
+
+
+\subsection{Basic Stripe algorithm}
+
+\begin{definition}[Basic Stripe algorithm: projection onto the central hyperplane]
+The basic variant corresponds to the choice
+$
+\Psi(\eta,\varepsilon,\delta,\beta)=\eta,
+$
+and $\gamma_k \equiv 1$ in~\eqref{eq:general_update}.
+In this case, the parameters $\delta$ and $\beta$ are inactive.
+
+Equivalently, the update rule takes the form
+\begin{equation}
+\label{eq:algo_simple}
+\theta_{k+1}=
+\begin{cases}
+\theta_k, & \text{if } |\eta_k(\theta_k)| < \varepsilon,\\[2mm]
+\theta_k-\dfrac{\eta_k(\theta_k)}{\|a_k\|^2}\,a_k,
+& \text{if } |\eta_k(\theta_k)| \ge \varepsilon.
+\end{cases}
+\end{equation}
+
+\end{definition}
+
+The algorithm (\ref{eq:algo_simple}) admits the following geometric interpretation. If the current iterate $\theta_k$ lies outside the hyperslab,
+the update~\eqref{eq:algo_simple}
+corresponds to the orthogonal projection
+onto the central hyperplane $\eta_k(\theta)=0$.
+\textcolor{red}{
+Indeed, substituting the update rule~\eqref{eq:algo_simple}
+into the residual definition~\eqref{eq:eta}
+yields $\eta_k(\theta_{k+1})=0$, confirming that the update
+projects onto the central hyperplane
+$\langle a_k,\theta\rangle+b_k=0$
+(or equivalently $\langle a_k,\theta\rangle=-b_k$).
+}
+This interpretation underlies the term ``stripe'' used in the classical literature
+(see, e.g.,~\cite{Yakubovich1966Recurrent,Fomin1981}).
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.32\textwidth]{stripe_base_center_step.png}
+    \caption{Basic Stripe algorithm: projection of $\theta_k$
+    onto the central hyperplane of the hyperslab.}
+    \label{fig:stripe_basic}
+\end{figure}
+
+The finite-update convergence analysis of the basic Stripe algorithm
+relies on a strict feasibility assumption: there exists a parameter vector
+that satisfies all hyperslab constraints with a positive margin.
+This assumption is inherent to the classical proof of finite convergence,
+as it guarantees that successive projections eventually enter the interior
+of the feasible region.
+
+In practical learning problems with noisy data or model mismatch,
+strict feasibility may be violated, meaning that no parameter vector
+satisfies all constraints simultaneously with nonzero slack.
+To address this situation, Yakubovich proposed a modified variant
+based on an $\varepsilon$-insensitive zone.
+
+\subsection{Improved Stripe algorithm}
+
+\begin{definition}[Improved Stripe algorithm: projection onto the nearest boundary]
+
+To relax the implicit assumption of strict feasibility of the constraint system, which underlies the finite-convergence analysis of the basic Stripe algorithm and may be violated in the presence of noise or modeling errors,
+Yakubovich proposed a modified variant based on an $\varepsilon$-insensitive zone.
+
+
+In this case,
+$
+\Psi(\eta,\varepsilon,\delta,\beta)
+=
+\eta-\varepsilon\,\mathrm{sign}(\eta),
+$
+with the relaxation parameter $\gamma_k \equiv \mu_k \in [1/2,1]$.
+In this variant, the parameters $\delta$ and $\beta$ are inactive.
+
+The resulting update rule takes the form
+
+\begin{equation}
+\label{eq:algo_improved}
+\theta_{k+1}=
+\begin{cases}
+\theta_k, & \text{if } |\eta_k(\theta_k)| \le \varepsilon,\\[2mm]
+\theta_k-\mu_k
+\dfrac{\eta_k(\theta_k)-\varepsilon\,\mathrm{sign}(\eta_k(\theta_k))}
+{\|a_k\|^2}\,a_k,
+& \text{if } |\eta_k(\theta_k)| > \varepsilon.
+\end{cases}
+\end{equation}
+
+The algorithm (\ref{eq:algo_improved}) admits geometric interpretation as well. For $\mu_k = 1$, the update corresponds to a projection
+onto the \emph{nearest boundary} of the hyperslab,
+that is, onto the hyperplane $|\langle a_k,\theta\rangle + b_k| = \varepsilon$.
+Compared to the basic variant,
+this leads to more conservative updates
+and improves the robustness of the algorithm
+in noisy settings.
+For $\mu_k \in (1/2,1)$ the update corresponds to a relaxed projection step; the choice of $\mu_k$ affects the aggressiveness of the correction but does not alter the qualitative form of the update rule.
+
+\end{definition}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.32\textwidth]{stripe_inner_boundary_fixed.png}
+    \caption{Improved Stripe algorithm ($\mu_k = 1$):
+    projection onto the nearest boundary of the hyperslab.}
+    \label{fig:stripe_improved}
+\end{figure}
+
+
+
+% For linear systems of stripe constraints, classical results due to Yakubovich show that projection-based stripe updates terminate after a finite number of corrections, provided that the constraint system is strictly feasible.
+% For completeness and to fix notation in the form used in this study, we state the corresponding finite-convergence bound for the Stripe update rule \cite{Yakubovich1966Recurrent}.
+
+\textcolor{red}{For linear systems of stripe constraints, classical results due to Yakubovich show that projection-based stripe updates terminate after a finite number of corrections, provided that the constraint system is strictly feasible. The following theorem was proved in \cite{Yakubovich1966Recurrent}.}
+
+\begin{theorem}[Finite convergence, Yakubovich]
+\label{thm:convergence}
+
+Assume that the sequence of feature vectors $\{a_k\}$ is bounded,
+$\|a_k\| \le \overline{a} < \infty$,
+and that there exists an ``ideal'' parameter vector $\theta_\ast$
+such that, for some $\rho \in (0,1)$, the strict feasibility condition
+$
+    \left| \langle a_k, \theta_\ast \rangle + b_k \right|
+    < \rho \varepsilon
+    \qquad \text{for all } k
+$
+holds.
+Then the improved Stripe algorithm~\eqref{eq:algo_improved}
+with relaxation parameters $\mu_k \in [1/2,1]$
+is finitely convergent.
+Moreover, the number of correction steps $r$ (i.e., iterations for which $\theta_{k+1} \neq \theta_k$) satisfies 
+\begin{equation}
+    r \le
+    \frac{\|\theta_1 - \theta_\ast\|^2 \, \overline{a}^2}
+         {\varepsilon^2 (1-\rho)^2}.
+\end{equation}
+\end{theorem}
+
+
+\begin{remark}
+The convergence conditions differ for the two versions of the Stripe algorithm.
+For the basic Stripe algorithm~\eqref{eq:algo_simple}
+(projection onto the centerline),
+finite convergence requires the stronger margin condition $\rho < 1/2$.
+In this case, the number of corrective updates satisfies
+$
+    r_{\mathrm{base}} \le
+    \frac{\|\theta_1 - \theta_\ast\|^2 \, \overline{a}^2}
+         {\varepsilon^2 (1 - 2\rho)}.
+$
+
+In contrast, for the improved $\varepsilon$-insensitive variant
+considered in~\eqref{eq:algo_improved},
+this restriction is relaxed, and finite convergence is guaranteed
+for any $\rho \in (0,1)$.
+As a result, the improved algorithm is more suitable for learning
+problems in the presence of significant noise.
+\end{remark}
+
+
+The update rule~\eqref{eq:general_update} encompasses, as special cases, the classical algorithms for learning $C$-systems introduced by V.~A.~Yakubovich.
+In the $C$-system formulation, learning is posed as recurrent processing of stripe-shaped objective inequalities, and parameter updates are performed only when the corresponding constraint is violated.
+In the classical theory, finite convergence of $C$-systems is established for specific piecewise-defined correction rules, such as the $C_\varepsilon$ and $C_5$ algorithms.
+In this setting, finite convergence is understood in the strong sense: there exists an iteration index $q$ such that $\theta_q = \theta_{q+1} = \theta_{q+2} = \dots$, that is, the parameter updates terminate after a finite number of corrections.
+This result holds under the standard assumptions of strict feasibility of the system of object inequalities
+and boundedness of the input vectors.
+These classical algorithms can be interpreted as particular instances of~\eqref{eq:general_update} corresponding to specific choices of the correction function~$\Psi$.
+A more detailed description of the $C$-system formulation and the associated multizone projection rules is provided in Section~\ref{subsec:C_systems}.
+
+
+\subsubsection{Relation to the Kaczmarz method}
+\label{sec:kaczmarz_relation}
+
+% From a computational perspective, the basic Stripe algorithm is closely related to the classical Kaczmarz method and can be interpreted as its natural extension to systems with interval uncertainty.
+\textcolor{red}{From a computational perspective, the basic Stripe algorithm is closely related to the classical Kaczmarz method. Although the two methods address different problem formulations, their update rules are algebraically connected.}
+
+In~\cite{Kaczmarz1937}, S.~Kaczmarz proposed an iterative method
+for solving a fixed system of linear equations of the form
+$
+\langle a_k, \theta \rangle + b_k = 0, k=1,\dots,m,
+$
+by sequential orthogonal projections of the current iterate onto the
+corresponding hyperplanes.
+Given the $k$-th equation, the Kaczmarz update takes the form
+\begin{equation}
+\label{eq:kaczmarz_general}
+\theta_{k+1}
+=
+\theta_k
+-
+\frac{\langle a_k, \theta_k \rangle + b_k}{\|a_k\|^2}\, a_k.
+\end{equation}
+
+This update coincides algebraically with the correction step of the basic
+Stripe algorithm~\eqref{eq:algo_simple} on iterations where a violation occurs.
+The essential difference lies not in the update formula itself, but in the
+underlying problem formulation.
+
+The Kaczmarz method aims to find an exact solution in the intersection of
+hyperplanes,
+$
+\theta_\ast \in \bigcap_k
+\left\{
+\theta \in \mathbb{R}^n
+\;\middle|\;
+\langle a_k, \theta \rangle + b_k = 0
+\right\},
+$
+and therefore continues to update the parameters indefinitely when the system
+is inconsistent or noisy.
+
+In contrast, the Stripe framework replaces equality constraints by
+\emph{interval constraints},
+$
+|\langle a_k, \theta \rangle + b_k| < \varepsilon,
+$
+which define hyperslabs in the parameter space.
+Once the current iterate enters the corresponding slab, no further correction
+is applied for that constraint.
+This mechanism naturally suppresses oscillatory behavior typical of
+row-action methods applied to inconsistent systems and leads to more stable
+learning dynamics.
+
+From this viewpoint, the basic Stripe algorithm can be seen as a feasibility-based
+relaxation of the Kaczmarz method, where the goal is to reach the intersection
+of hyperslabs rather than hyperplanes.
+This interpretation aligns Stripe algorithms with modern online and adaptive
+learning settings, in which constraints may be revealed sequentially and exact
+consistency is neither assumed nor required.
+
+A related perspective was proposed in \cite{Gusev2020} in the context of adaptive
+control, where the interaction between the learning algorithm and the environment
+is modeled as a game in which constraints are generated adaptively in response to
+the current parameter vector.
+
+
+\subsection{$C$-systems: multizone projections onto hyperslabs}
+\label{subsec:C_systems}
+
+In the $C$-formulation, learning is posed as the sequential processing
+of the canonical hyperslab constraints
+introduced earlier in~\eqref{eq:canonical_constraint}.
+In the linear case $f(x,\theta)=\langle\theta,x\rangle$,
+each observation $(x_i,y_i)$ gives rise to a constraint of the form
+$
+|\langle x_i,\theta\rangle - y_i| < \varepsilon .
+$
+
+In terms of the canonical form~\eqref{eq:canonical_constraint},
+this corresponds to the choice
+$
+a_k = x_i,
+\qquad
+b_k = -y_i,
+$
+with the residual
+$
+\eta_k(\theta)
+=
+\langle a_k,\theta\rangle + b_k
+=
+\langle x_i,\theta\rangle - y_i .
+$
+
+
+In the $C$-system, constraints are processed sequentially, one per iteration
+(e.g., in a fixed order or using a random permutation of the training set).
+At iteration $k$, the residual
+$
+\eta_k(\theta_k)=\langle a_k,\theta_k\rangle+b_k
+$
+is evaluated, and a parameter correction is performed only if the corresponding
+hyperslab constraint is violated, i.e., when  $|\eta_k(\theta_k)| \ge \varepsilon$.
+
+The $C$-system is solved using the same unified
+Stripe projection step~\eqref{eq:general_update}
+as the $L$-system.
+The difference lies exclusively in the choice of the correction function~$\Psi$.
+In the scheme used in our experiments,
+we fix $\gamma_k \equiv 1$ and introduce a multizone correction function
+$\Psi_{\mathrm{mz}}$,
+which depends on the magnitude of the constraint violation.
+
+
+In the $C$-system, parameter updates are performed using the unified Stripe projection step
+\eqref{eq:general_update} with $\gamma_k \equiv 1$
+and a multizone correction function $\Psi(\cdot)$,
+which depends on the magnitude of the constraint violation.
+The function $\Psi(\cdot)$ is defined piecewise as
+\[
+\Psi(\eta)=
+\begin{cases}
+0, & |\eta|<\varepsilon, \\[6pt]
+\beta\bigl(\eta-\varepsilon\,\mathrm{sign}(\eta)\bigr),
+& \varepsilon \le |\eta| < \varepsilon+\delta, \\[10pt]
+2\bigl(\eta-\varepsilon\,\mathrm{sign}(\eta)\bigr),
+& \varepsilon+\delta \le |\eta| < 2\varepsilon, \\[10pt]
+\eta, & |\eta| \ge 2\varepsilon.
+\end{cases}
+\]
+Here $\delta\in(0,\varepsilon)$ specifies the width of the buffer zone,
+and $\beta\in(0,2]$ is a relaxation parameter.
+
+If $|\eta_k|<\varepsilon$, the current iterate $\theta_k$ lies inside the hyperslab
+and no correction is performed.
+For $|\eta_k|\ge 2\varepsilon$, the update coincides with the basic
+Stripe step~\eqref{eq:algo_simple},
+that is, with the orthogonal projection onto the central hyperplane
+$\eta_k(\theta)=0$.
+In the intermediate zones, the update corresponds to a reflection
+with respect to the nearest hyperslab boundary
+or to a relaxed correction,
+which improves the robustness of the algorithm in noisy settings.
+
+
+The multizone correction used in our experiments
+can be viewed as a simplified variant of the $C_\varepsilon$ algorithm
+proposed by V.~A.~Yakubovich.
+It corresponds to formula~(5.3) in~\cite{Yakubovich1966Recurrent}
+in a special case where the stabilizing term $\rho_{j(k)}$ is omitted
+and the relaxation parameter $\beta$ is fixed.
+
+
+\section{Application to Machine Learning: Linear Models}
+\label{sec:linear_models}
+
+In this section, we consider the linear model
+$
+f(x,\theta)=\langle \theta,x\rangle,
+$
+and demonstrate how the $L$- and $C$-learning formulations lead
+to systems of hyperslab constraints of the canonical form
+\eqref{eq:canonical_constraint}.
+To avoid redundancy, we do not repeat the general supervised learning setup
+or the basic Stripe update scheme,
+and instead focus on the instantiation of the coefficients $(a_k,b_k)$
+and on practical training procedures.
+
+
+\subsection{Learning $L$-systems: quadratic loss}
+\label{sec:l_application}
+
+We consider a quadratic loss function with $\ell_2$ regularization,
+$
+Q(\theta)=\frac{1}{m}\sum_{i=1}^m\bigl(y_i-\langle \theta,x_i\rangle\bigr)^2
++\lambda\|\theta\|^2.
+$
+
+The components of the gradient are given by
+$
+\frac{\partial Q(\theta)}{\partial \theta_j}
+=
+2\Bigl(\sum_{k=1}^n A^{(m)}_{jk}\theta_k - B^{(m)}_j\Bigr),
+$
+where
+\begin{align}
+A^{(m)}_{jk} &= \frac{1}{m}\sum_{i=1}^m x_{ij}x_{ik} + \lambda\,\delta_{jk},\\
+B^{(m)}_j &= \frac{1}{m}\sum_{i=1}^m y_i x_{ij}.
+\end{align}
+
+The relaxed stationarity conditions
+\eqref{eq:L_relaxed_stationarity}
+are equivalent to a system of hyperslab constraints
+$
+\bigl|\langle a_j,\theta\rangle + b_j\bigr| < \varepsilon, j=1,\dots,n,
+$
+where
+$
+a_j := A^{(m)}_{j\cdot}, b_j := -B^{(m)}_j.
+$
+Thus, in the $L$-system, the constraint index is naturally
+identified with the index of the parameter coordinate.
+
+In the online setting, the statistics $A^{(m)}$ and $B^{(m)}$
+are updated recurrently as new observations arrive.
+After each update of the statistics, the system of hyperslab constraints
+changes accordingly, which enables the use of Stripe projection algorithms
+to maintain approximate feasibility
+within the prescribed tolerance~$\varepsilon$.
+
+
+\subsection{Learning $C$-systems: pointwise constraints}
+\label{sec:c_application}
+
+In the $C$-formulation, learning is reduced to the sequential processing
+of pointwise hyperslab constraints on the prediction error
+(see the detailed description and geometric interpretation
+in Section \ref{subsec:C_systems}).
+For the linear model $f(x,\theta)=\langle\theta,x\rangle$,
+each training example $(x_i,y_i)$ induces a constraint of the form
+$
+|\langle x_i,\theta\rangle - y_i| < \varepsilon.
+$
+That is, in the canonical form~\eqref{eq:canonical_constraint},
+one can set $a_i = x_i$, $b_i = -y_i$,
+with the residual given by
+$
+\eta_i(\theta)=\langle x_i,\theta\rangle - y_i.
+$
+
+The $C$-system is solved by sequentially processing
+the canonical constraints associated with the training examples.
+The order in which the constraints are processed
+(e.g., a single pass or multiple passes over a finite dataset)
+is determined by the chosen training setting
+and does not affect the form of the projection step.
+
+
+At iteration $k$, the residual
+$
+\eta_k(\theta_k) = \langle a_k,\theta_k\rangle + b_k
+$
+is evaluated, and a correction is performed only when the hyperslab is violated,
+that is, when $|\eta_k(\theta_k)|\ge\varepsilon$.
+The update takes the form
+$
+\theta_{k+1}
+=
+\theta_k
+-
+\frac{\Psi_{\mathrm{mz}}(\eta_k(\theta_k))}{\|a_k\|^2}\,a_k,
+$
+where the correction function $\Psi_{\mathrm{mz}}$
+(with buffer-zone width $\delta$ and relaxation parameter $\beta$)
+is defined in Section \ref{subsec:C_systems}.
+
+
+% \section{Nonlinear Models: Kernelized Extension}
+\section{\textcolor{red}{Kernelized Extension of Stripe Algorithms}}
+\label{sec:kernel_methods_sec}
+
+This section introduces a kernelized extension of the projection-based Stripe framework.
+The extension preserves the geometric interpretation of hyperslab constraints
+and the structure of projection-based updates,
+while enabling nonlinear decision functions through kernel representations.
+
+
+\subsection{Kernelized parametrization}
+
+We consider a model in the form of a kernel expansion,
+$
+f(x;\boldsymbol{\alpha})
+=
+\sum_{k=1}^{M}\alpha_k K(\tilde{x}_k,x),
+\qquad
+\boldsymbol{\alpha}\in\mathbb{R}^M,
+$
+where $K(\cdot,\cdot)$ is a positive definite kernel
+and $\{\tilde{x}_k\}_{k=1}^{M}$ denotes a dictionary
+(a set of support points).
+In the batch setting, one typically has $M=m$ and $\tilde{x}_k=x_k$,
+while in the online setting $M$ may grow as new data arrive.
+
+
+\subsection{Kernelized $L$-system}
+\label{subsec:kernel_L}
+
+\paragraph{Kernel parametrization and dictionary.}
+Let a training dataset $\mathcal{D}=\{(x_i,y_i)\}_{i=1}^m$ be given.
+For the kernelized model, we employ the representation
+$
+f(x;\boldsymbol{\alpha})=\sum_{k=1}^{M}\alpha_k\,K(\tilde{x}_k,x),
+$
+where $\{\tilde{x}_k\}_{k=1}^{M}$ denotes a \emph{dictionary} of support points.
+In the batch setting, we take $M=m$ and $\tilde{x}_k=x_k$,
+while in the online setting $M$ corresponds to the current dictionary size
+(see \ref{subsec:impl_kernel_L}).
+
+We consider a quadratic loss function with $\ell_2$ regularization
+in the space of expansion coefficients:
+\begin{equation}
+\label{eq:kernel_L_objective}
+Q(\boldsymbol{\alpha})
+=
+\frac{1}{m}\sum_{i=1}^{m}
+\Bigl(
+y_i - \sum_{k=1}^{M}\alpha_k K(\tilde{x}_k,x_i)
+\Bigr)^2
++
+\lambda\|\boldsymbol{\alpha}\|^2 .
+\end{equation}
+For convenience, we introduce the kernel feature matrix
+$\Phi\in\mathbb{R}^{m\times M}$ with entries
+$\Phi_{ik}:=K(\tilde{x}_k,x_i)$.
+Then~\eqref{eq:kernel_L_objective} can be rewritten as
+$
+Q(\boldsymbol{\alpha})
+=
+\frac{1}{m}\|y-\Phi\boldsymbol{\alpha}\|^2+\lambda\|\boldsymbol{\alpha}\|^2 .
+$
+
+The stationary condition $\nabla_{\boldsymbol{\alpha}}Q(\boldsymbol{\alpha})=0$
+is equivalent to the linear system
+\begin{equation}
+\label{eq:kernel_L_normal_eq}
+\Bigl(\tfrac{1}{m}\Phi^\top\Phi+\lambda I\Bigr)\boldsymbol{\alpha}
+=
+\tfrac{1}{m}\Phi^\top y .
+\end{equation}
+The components of the gradient are given by
+\begin{equation}
+\label{eq:kernel_L_gradient}
+\frac{\partial Q(\boldsymbol{\alpha})}{\partial \alpha_j}
+=
+2\Bigl(
+\sum_{k=1}^{M} G^{(m,M)}_{jk}\alpha_k - g^{(m,M)}_j
+\Bigr),
+\end{equation}
+where
+\begin{align}
+G^{(m,M)}_{jk}
+&:=
+\frac{1}{m}\sum_{i=1}^{m}
+K(\tilde{x}_j,x_i)\,K(\tilde{x}_k,x_i)
++
+\lambda\,\delta_{jk},
+\label{eq:kernel_G_def}
+\\
+g^{(m,M)}_{j}
+&:=
+\frac{1}{m}\sum_{i=1}^{m}
+y_i\,K(\tilde{x}_j,x_i).
+\label{eq:kernel_g_def}
+\end{align}
+Here $\delta_{jk}$ denotes the Kronecker delta.
+
+Instead of enforcing~\eqref{eq:kernel_L_normal_eq} exactly,
+we adopt a relaxed stationarity condition:
+$
+\left|
+\frac{\partial Q(\alpha)}{\partial \alpha_j}
+\right|
+\le \varepsilon,  j=1,\dots,M.
+$
+Using~\eqref{eq:kernel_L_gradient},
+this condition is equivalent to a system of hyperslab constraints
+of the canonical form~\eqref{eq:canonical_constraint}:
+$
+\bigl|
+\langle a_j,\boldsymbol{\alpha}\rangle + b_j
+\bigr|
+<
+\varepsilon,
+\qquad j=1,\dots,M,
+$
+where
+$
+a_j := G^{(m,M)}_{j\cdot},
+\qquad
+b_j := -g^{(m,M)}_j.
+$
+Thus, the kernelized $L$-system reduces to a system of linear hyperslab constraints
+in the space of coefficients $\boldsymbol{\alpha}$,
+to which the Stripe projection algorithms can be applied directly.
+
+
+\subsection{Kernelized $C$-system}
+
+In the $C$-formulation, each observation $(x_i,y_i)$ gives rise to a constraint
+$
+|y_i - f(x_i;\boldsymbol{\alpha})| < \varepsilon .
+$
+Substituting the kernelized representation
+$f(x;\boldsymbol{\alpha})=\sum_{k=1}^{M}\alpha_k K(\tilde{x}_k,x)$,
+we obtain
+$
+\left|
+\sum_{k=1}^{M}\alpha_k K(\tilde{x}_k,x_i) - y_i
+\right| < \varepsilon .
+$
+This constraint has the canonical form~\eqref{eq:canonical_constraint},
+$
+|\langle a_i,\boldsymbol{\alpha}\rangle + b_i| < \varepsilon,
+$
+where
+$
+(a_i)_k := K(\tilde{x}_k,x_i),
+\qquad
+b_i := -y_i .
+$
+
+This formulation is a direct analogue of the linear $C$-system,
+with the input feature vector $x_i$
+replaced by the vector of kernel evaluations
+$\bigl(K(\tilde{x}_1,x_i),\dots,K(\tilde{x}_M,x_i)\bigr)$.
+
+Consequently, the kernelized $C$-system also reduces to a system
+of linear hyperslab constraints
+in the space of coefficients $\boldsymbol{\alpha}$,
+to which the Stripe projection algorithms can be applied directly.
+
+
+\section{Experimental Evaluation}
+\label{sec:experiments}
+
+\subsection{Objectives}
+
+The experimental study is designed to assess Stripe methods from three complementary perspectives. 
+First, we evaluate predictive performance in comparison with strong linear and kernel-based baselines on a diverse collection of tabular datasets. 
+Second, we analyze the internal training dynamics, with particular emphasis on the number of corrective updates and the sparsity of the learning process. 
+Third, we investigate the robustness of Stripe with respect to variations in its structural parameters, including the tolerance level $\varepsilon$, the buffer width $\delta$, and the correction scaling coefficient $\beta$.
+
+Unlike gradient-based methods, Stripe does not minimize a global loss function through iterative gradient descent. 
+Instead, it seeks feasibility with respect to a system of stripe constraints and performs parameter updates only when admissibility is violated. 
+As a result, the learning trajectory is governed by geometric feasibility conditions rather than by learning-rate tuning. 
+This distinction motivates an empirical examination of convergence behavior, update sparsity, and the trade-off between model complexity and predictive accuracy.
+
+
+\subsection{Datasets and Preprocessing}
+\label{subsec:datasets-preprocessing}
+
+The main ranking benchmark is conducted on $53$ real-world binary classification tasks from OpenML. Datasets with non-binary target variables are excluded. Additional diagnostic experiments use either subsets of this benchmark or extended collections of datasets, as stated explicitly in the corresponding subsections.
+
+We employ stratified $5$-fold cross-validation for performance estimation. Numerical features are imputed and normalized using a quantile transformation. Categorical features are encoded via one-hot encoding. All preprocessing steps are fitted exclusively on the training split and subsequently applied to the validation and test splits to prevent information leakage.
+
+All comparisons within each diagnostic experiment are performed under a common preprocessing and evaluation protocol.
+
+% The proposed methods are evaluated on 53 real-world binary classification tasks from OpenML. 
+% Datasets with non-binary target variables are excluded. 
+% We employ stratified 5-fold cross-validation for performance estimation.
+
+% Numerical features are imputed and normalized using a quantile transformation. 
+% Categorical features are encoded via one-hot encoding. 
+% All preprocessing steps are fitted exclusively on the training split and subsequently applied to the validation and test splits to prevent information leakage.
+
+% % All experiments reported in this section are conducted on the same set of 53 datasets, ensuring comparability across linear and kernel variants.
+
+% \textcolor{red}{The main ranking benchmark is conducted on 53 binary OpenML datasets. Additional diagnostic experiments use subsets or extended collections of datasets, as stated explicitly in the corresponding subsections. All comparisons within each diagnostic experiment are performed under a common preprocessing and evaluation protocol.}
+
+
+
+\subsection{Compared Methods}
+
+We evaluate Stripe under two complementary experimental settings: a purely linear benchmark and a kernel-based benchmark. 
+
+\paragraph{Linear benchmark.} We compare the following linear classifiers: (i) SGDClassifier with logistic loss (denoted as SGD), (ii) Stripe-L (Linear), and (iii) Stripe-C (Linear). 
+
+\paragraph{Kernel benchmark.} To assess kernel-based representations, we additionally consider: (i) SVM (kernel), (ii) Stripe-L (kernel), (iii) Stripe-C (kernel), and (iv) RFF-SGD (Random Fourier Features followed by SGD).
+
+% We evaluate Stripe under two complementary experimental settings: 
+% a purely linear benchmark and a \textcolor{red}{kernel-based benchmark}.
+
+% \paragraph{Linear benchmark.}
+% We compare the following linear classifiers:
+% (i) SGDClassifier with logistic loss (denoted as SGD),
+% (ii) Stripe-L (Linear),
+% (iii) Stripe-C (Linear).
+
+% \paragraph{Kernel benchmark.}
+% To assess nonlinear representations, we additionally consider:
+% (i) SVM (kernel),
+% (ii) Stripe-L (kernel),
+% (iii) Stripe-C (kernel),
+% (iv) RFF-SGD (Random Fourier Features followed by SGD).
+
+% For RFF-SGD, the random Fourier feature mapping is fitted exclusively on the training split and subsequently applied to the validation and test splits in order to prevent information leakage.
+
+\subsection{Evaluation Protocol}
+
+Hyperparameters are selected using Bayesian optimization with the Tree-structured Parzen Estimator (TPE)~\cite{NIPS2011_86e8f7ab}, 
+implemented via the \texttt{hyperopt} library. 
+For each dataset and model, the optimization budget is fixed to 20 trials.
+
+To reduce computational cost, hyperparameter optimization is performed on a stratified subsample of at most 500 training instances. 
+Within this subsample, model configurations are evaluated using 3-fold stratified cross-validation, 
+and the objective is the validation $F_1$ score. 
+The best configuration is subsequently retrained on the full training set.
+
+% Methods operating in an epoch-based regime (Stripe variants, SGD, and RFF-SGD) are trained for at most 20 epochs. 
+In the main ranking benchmark, epoch-based methods are trained for at most 20 epochs. Additional diagnostic experiments, including update-dynamics and structural \(\varepsilon\)-sensitivity analyses, use the epoch budgets stated in the corresponding subsections.
+Batch-style models are trained once on the training split.
+
+For all models, the classification threshold is selected on the validation split by maximizing the $F_1$ score over a quantile grid of candidate thresholds. 
+The selected threshold is then fixed and applied to the test split.
+
+We report AUC, $F_1$, precision, and recall. 
+The primary comparison metric is the mean test $F_1$ score averaged across cross-validation folds.
+
+
+\subsection{Large-Scale Benchmark Across 53 Datasets}
+
+To assess robustness across heterogeneous tasks, we adopt a ranking-based evaluation protocol.
+For each dataset, models are ranked according to their mean test $F_1$ score
+(rank 1 = best), and ranks are averaged across the 53 datasets.
+In addition to the mean rank, we report the number and rate of wins (rank = 1)
+and top-2 finishes (rank $\le 2$).
+
+\paragraph{Linear benchmark.}
+
+\begin{table}[t]
+\centering
+\caption{Ranking comparison for linear models across 53 OpenML datasets.
+Lower mean rank indicates better performance.}
+\label{tab:rank_linear}
+\begin{tabular}{lccccc}
+\toprule
+Model & Mean Rank $\downarrow$ & Wins & Top-2 & Win Rate & Top-2 Rate \\
+\midrule
+SGD & 1.660 & 26 & 45 & 0.491 & 0.849 \\
+Stripe-L (Linear) & 2.113 & 16 & 31 & 0.302 & 0.585 \\
+Stripe-C (Linear) & 2.151 & 14 & 31 & 0.264 & 0.585 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:rank_linear} summarizes the results for purely linear models.
+SGD achieves the best aggregate performance, attaining the lowest mean rank and the highest win frequency.
+It appears among the top two models on the vast majority of datasets, confirming its strong and stable behavior in standard linear settings.
+
+The Stripe linear variants remain competitive across the benchmark.
+Both Stripe-L (Linear) and Stripe-C (Linear) achieve a substantial number of first-place finishes and consistent top-2 placements.
+Although their average ranks are moderately higher than that of SGD, their performance remains stable across a wide range of datasets.
+
+These results indicate that, even in the absence of nonlinear feature mappings,
+Stripe provides a competitive alternative to conventional gradient-based linear optimization, while preserving its violation-driven and update-sparse training dynamics.
+
+\paragraph{Kernel benchmark.}
+
+To ensure a controlled comparison among \textcolor{red}{kernel-based approaches},
+we compute ranks considering SVM (kernel),
+Stripe-L (kernel), Stripe-C (kernel), and RFF-SGD.
+
+As shown in Table~\ref{tab:rank_kernel},
+kernel SVM achieves the strongest aggregate performance,
+obtaining the lowest mean rank and the highest number of wins.
+
+\begin{table}[t]
+\centering
+\caption{Ranking comparison across 53 OpenML datasets for the \textcolor{red}{kernel-based benchmark}. Lower mean rank indicates better performance.}
+\label{tab:rank_kernel}
+\begin{tabular}{lccccc}
+\toprule
+Model & Mean Rank $\downarrow$ & Wins & Top-2 & Win Rate & Top-2 Rate \\
+\midrule
+SVM (kernel)        & 1.962 & 32 & 35 & 0.604 & 0.660 \\
+Stripe-C (Kernel)     & 2.585 &  7 & 27 & 0.132 & 0.509 \\
+Stripe-L (Kernel)     & 2.585 &  7 & 25 & 0.132 & 0.472 \\
+RFF-SGD             & 2.736 & 10 & 22 & 0.189 & 0.415 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The Stripe variants obtain intermediate mean ranks and
+achieve top-2 placements on approximately half of the datasets,
+indicating competitive performance on a substantial subset of tasks.
+
+RFF-SGD exhibits a comparable overall profile,
+with a slightly higher mean rank but a non-negligible number of wins.
+
+Overall, while kernel SVM provides the strongest average performance
+within this \textcolor{red}{kernel-based benchmark}, the Stripe systems demonstrate consistent performance across
+heterogeneous datasets under the same evaluation protocol.
+
+\subsection{Learning Dynamics and Update Sparsity}
+
+Stripe differs from gradient-based optimization in that parameter updates are performed only when constraint violations exceed a prescribed tolerance.
+This suggests that training should exhibit a violation-driven dynamic rather than continuous incremental adjustments.
+
+To empirically examine this behavior, we analyze the number of corrective updates per epoch.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{openml__sonar__39_FIG_updates_dynamics_vs_beta.png}
+\caption{Corrective updates per epoch (mean ± std) for different $\beta$ values ($C$-system).}
+\label{fig:updates_beta}
+\end{figure}
+
+As shown in Figure~\ref{fig:updates_beta},
+the majority of corrective updates occur during the initial training epochs.
+Following this early phase of intensive corrections,
+the update frequency decreases substantially and stabilizes.
+
+This behavior is consistent with a violation-driven training mechanism: once most constraints are satisfied within the prescribed tolerance, further parameter adjustments become infrequent.
+In contrast to gradient-based optimization,
+which performs continuous updates throughout training, Stripe transitions to a sparse-update regime after an initial correction phase.
+
+Such dynamics suggest that Stripe rapidly approaches a stable feasibility region,
+after which learning proceeds through occasional corrections rather than persistent incremental adjustments.
+This update sparsity may contribute to computational efficiency and reduced sensitivity to small stochastic fluctuations.
+
+
+
+\subsection{Ablation Study: Effect of the Parameter $\beta$ ($C$-system)}
+
+The parameter $\beta$ controls the magnitude of the corrective update within the buffer region
+$\varepsilon \le |\eta| < \varepsilon + \delta$,
+thereby regulating the correction intensity near the boundary of admissibility.
+
+To analyze its effect, we examine:
+(i) the evolution of predictive performance across training epochs,
+(ii) the total number of corrective updates, and
+(iii) the relationship between computational effort and final classification quality.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fbeta_vs_epoch_beta_plus_rff.png}
+\caption{Validation $F_1$ as a function of training epochs for different values of $\beta$ ($C$-system), with RFF-SGD shown for reference.}
+\label{fig:beta_fbeta}
+\end{figure}
+
+As shown in Figure~\ref{fig:beta_fbeta}, Stripe reaches a stable performance level within the first few epochs. 
+Differences across $\beta$ values are modest and primarily visible during the early training phase. 
+In contrast, RFF-SGD exhibits a more gradual convergence pattern.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{FIG_beta_total_updates_vs_testFbeta.png}
+\caption{Total number of corrective updates and final test $F_1$ for different values of $\beta$ (mean $\pm$ std).}
+\label{fig:beta_tradeoff}
+\end{figure}
+
+Figure~\ref{fig:beta_tradeoff} indicates that varying $\beta$ leads to moderate changes in the total number of updates, without signs of instability or abrupt growth in computational cost. 
+No clear monotonic relationship is observed between the number of updates and the final classification performance: configurations with substantially different update counts achieve comparable $F_1$ scores.
+
+Overall, the results indicate that while $\beta$ modulates the intensity of corrective steps and mildly affects the total number of updates, predictive performance remains comparatively stable across the examined range.
+
+This suggests that the algorithm is not overly sensitive to the precise choice of $\beta$, and that variations in correction magnitude primarily influence training dynamics rather than the final decision boundary.
+
+\subsection{Ablation Study: Effect of the Parameter $\delta$}
+
+The parameter $\delta$ determines the width of the buffer region between the strictly feasible zone and the region of full correction. 
+It therefore controls the smoothness of the transition between no update and a full corrective projection.
+
+To assess its impact, we analyze the evolution of predictive performance across epochs and the relationship between the number of corrective updates and the final classification quality. 
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{FIG_delta_ratio_ValFbeta_vs_epoch_PLUS_RFF.png}
+\caption{Validation $F_1$ as a function of training epochs for different values of $\delta$ ($C$-system).}
+\label{fig:delta_fbeta}
+\end{figure}
+
+As shown in Figure~\ref{fig:delta_fbeta}, the performance dynamics remain qualitatively similar across different $\delta$ values. 
+Stripe reaches a stable $F_1$ level within the first few epochs, and differences between configurations remain moderate. 
+This indicates an absence of fragile sensitivity with respect to the buffer width.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{FIG_delta_total_updates_vs_testFbeta.png}
+\caption{Total number of corrective updates and final test $F_1$ for different values of $\delta$ (mean $\pm$ std).}
+\label{fig:delta_tradeoff}
+\end{figure}
+
+Figure~\ref{fig:delta_tradeoff} shows that varying $\delta$ affects the total number of corrective updates, yet no clear systematic relationship emerges between computational effort and final performance. 
+Even configurations with noticeably different update counts achieve comparable $F_1$ scores.
+
+Overall, the results indicate that while $\delta$ affects the frequency of corrective updates, predictive performance remains largely stable across the examined range.
+
+This suggests that moderate variations in the buffer width primarily influence training dynamics rather than the final classification quality, and that the method does not exhibit fragile sensitivity to the precise choice of transition threshold.
+
+
+\subsection{Update dynamics}
+\label{subsec:update-dynamics}
+
+This experiment focuses on the training dynamics of the Stripe $L$-system rather than on final predictive performance. We analyze the epoch-wise correction behavior of the method on $45$ selected binary tabular benchmarks. The purpose is to examine whether the correction effort is distributed approximately uniformly across epochs or is mainly concentrated in the early stages of training.
+
+% Figure~\ref{fig} summarizes the pooled correction dynamics over dataset--repeat runs. For the $L$-system, the magnitude of coordinate corrections decreases rapidly during training. After normalization by the first-epoch value, the median correction magnitude drops from $1.000$ at epoch~$1$ to $0.091$ at epoch~$5$, $0.045$ at epoch~$10$, $0.018$ at epoch~$20$, and $0.009$ at epoch~$40$. Thus, by the end of training, the typical correction magnitude is below $1%$ of its initial value.
+
+Figure~\ref{fig:update-dynamics} summarizes the pooled correction dynamics over
+dataset--repeat runs. For the $L$-system, the magnitude of coordinate corrections
+decreases rapidly during training. After normalization by the first-epoch
+value, the median correction magnitude drops from $1.000$ at epoch~$1$ to
+$0.091$ at epoch~$5$, $0.045$ at epoch~$10$, $0.018$ at epoch~$20$, and
+$0.009$ at epoch~$40$. Thus, by the end of training, the typical correction
+magnitude is below $1\%$ of its initial value.
+
+The same effect is visible in the cumulative correction effort. The median
+cumulative effort already reaches $38.8\%$ after the first epoch, $66.6\%$ by
+epoch~$5$, $78.6\%$ by epoch~$10$, and $88.8\%$ by epoch~$20$. In contrast, a
+uniform-per-epoch reference would allocate only $2.5\%$, $12.5\%$, $25\%$, and
+$50\%$ of the total effort to the same epochs. Therefore, the $L$-system is
+strongly front-loaded: most of the correction effort is spent in the early
+epochs, while later epochs mostly perform small refinements.
+
+\textbf{Thus, the main observation is not a uniform improvement in final
+accuracy, but a specific temporal structure of the $L$-system updates.}
+The $L$-system concentrates most of its correction effort early in training and
+then continues with substantially smaller corrections.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/FIG_update_concentration_L_SYSTEM_FOR_PAPER.pdf}
+    \caption{
+    Correction-effort dynamics of the Stripe $L$-system on $45$ selected tabular
+    benchmarks.
+    Panel~(a) shows the $L$-system correction magnitude, normalized by its
+    first-epoch value, on a logarithmic scale.
+    Panel~(b) shows the cumulative share of the total correction effort.
+    Correction effort is measured by the sum of correction magnitudes within
+    an epoch. The dashed line denotes the uniform-per-epoch reference.
+    Curves show medians over dataset--repeat runs; shaded regions show
+    interquartile ranges.
+    \textbf{The figure should be interpreted as a diagnostic comparison of
+    update behavior, not as evidence that Stripe uniformly improves final
+    predictive accuracy over all baselines.}
+    }
+    \label{fig:update-dynamics}
+\end{figure}
+
+
+\subsection{Stability diagnostics}
+\label{subsec:stability-diagnostics}
+
+We next consider two complementary notions of stability on the complete subset
+of $36$ selected tabular benchmarks where all linear baselines are available.
+The first one is \emph{epoch-wise stability}: it measures the volatility of the
+validation-quality trajectory during training. The second one is
+\emph{run-to-run stability}: it measures the variability of the final test
+quality across repeated runs for the same dataset and model.
+
+For epoch-wise stability, we analyze only the iterative linear methods: SGD,
+Stripe-L, and Stripe-C. The batch SVM baseline is not included in this
+diagnostic because it does not have an epoch-wise training trajectory. We use
+validation $F_1$ trajectories for this diagnostic and reserve the test set for
+final held-out evaluation. For each dataset--repeat run, we compute three
+quantities from the validation $F_1$ trajectory: the standard deviation over
+the last ten epochs, the mean absolute epoch-to-epoch change, and the first
+epoch after which all subsequent validation $F_1$ values remain within $0.005$
+of the final validation value.
+
+Figure~\ref{fig:epochwise-stability-boxplots} summarizes the epoch-wise
+validation-quality stability on this complete subset of $36$ benchmarks.
+Stripe-L has the most stable validation trajectory among the iterative linear
+methods under these diagnostics. Its mean standard deviation over the last ten
+epochs is $0.002$, compared with $0.022$ for SGD and $0.055$ for Stripe-C. The
+mean absolute epoch-to-epoch change is also smallest for Stripe-L: $0.003$,
+compared with $0.024$ for SGD and $0.058$ for Stripe-C. Finally, Stripe-L
+reaches the stability tolerance earlier on average, at epoch $10.7$, whereas
+SGD and Stripe-C reach it at epochs $23.1$ and $36.6$, respectively.
+
+The distribution over dataset--repeat runs supports the same qualitative
+pattern, especially for last-epoch variability and epoch-to-epoch changes.
+Stripe-L has substantially lower validation-trajectory volatility, while
+Stripe-C exhibits larger fluctuations. This is consistent with the
+update-dynamics analysis: Stripe-L concentrates most of its correction effort
+in the early epochs and then continues with small refinements. Thus, the
+epoch-wise stability advantage is specific to the $L$-system variant and should
+not be interpreted as a uniform property of both Stripe formulations.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/FIG_epochwise_stability_boxplots_COMPLETE_36_Val_Fbeta.pdf}
+    \caption{
+    Epoch-wise validation-quality stability on the complete subset of $36$
+    selected tabular benchmarks. The diagnostics are computed over
+    dataset--repeat runs for the iterative methods only. The three panels show:
+    the standard deviation of validation $F_1$ over the last ten epochs, the
+    mean absolute epoch-to-epoch change in validation $F_1$, and the first
+    epoch after which the trajectory remains within $0.005$ of its final
+    validation value.
+    }
+    \label{fig:epochwise-stability-boxplots}
+\end{figure}
+
+Table~\ref{tab:final-quality-stability-complete-36} reports final test quality
+and run-to-run stability on the same subset of $36$ benchmarks. In this table,
+we also include the batch SVM baseline, because run-to-run stability is a
+final-quality diagnostic and does not require an epoch-wise trajectory.
+Run-to-run stability is computed as the standard deviation of the final test
+$F_1$ across repeats for each dataset and model, followed by averaging over
+datasets. Since SVM-Linear is a deterministic batch baseline under a fixed
+train/validation/test split, its zero repeat variability should be interpreted
+as a batch reference rather than compared directly with the stochastic
+repeat-to-repeat variability of the iterative training procedures.
+
+\input{tables/TABLE_final_quality_run_to_run_stability_COMPLETE_36.tex}
+
+The final-quality comparison shows that SVM-Linear obtains the highest mean
+test $F_1$ on this subset ($0.659$). Among the iterative methods, the mean test
+$F_1$ scores are comparable: $0.592$ for SGD, $0.579$ for Stripe-L, and
+$0.584$ for Stripe-C. However, their run-to-run variability differs
+substantially. Stripe-L has the lowest mean run-to-run standard deviation of
+test $F_1$ among the iterative methods ($0.006$), compared with $0.022$ for SGD
+and $0.050$ for Stripe-C. 
+
+Overall, the stability diagnostics show that Stripe-L is the most stable among
+the iterative linear methods in this comparison with respect to
+validation-trajectory volatility and final run-to-run variability. At the same
+time, this stability does not imply the highest final predictive accuracy:
+SVM-Linear remains the strongest method in mean test $F_1$ on this subset.
+Stripe-C, in contrast, should not be interpreted as a uniformly more stable
+variant. Its validation trajectory is more volatile in this experiment, which is consistent with the fact that the $C$-system correction mechanism depends directly on pointwise constraint violations and on the tolerance parameter $\varepsilon$. This observation motivates a separate structural diagnostic of $\varepsilon$-sensitivity, considered in
+Subsection~\ref{subsec:structural-eps-diagnostic}, where we examine whether the variability of the $C$-system can be related to properties of the training set.
+
+
+% \paragraph{Kernelized models.}
+% We also ran an additional final-quality stability check for kernelized models
+% on the complete subset of $11$ kernel benchmarks for which all four kernel
+% baselines were available. This experiment should be interpreted separately from
+% the epoch-wise stability analysis above: the current kernel benchmark logs final
+% performance across repeated runs, but do not store validation-quality
+% trajectories across epochs.
+
+% Table~\ref{tab:kernel-final-quality-stability} reports the corresponding
+% final test quality and run-to-run stability. In this setting, SVM-Kernel is the
+% strongest baseline, with the highest mean test $F_1$ ($0.832$) and the lowest
+% mean run-to-run standard deviation of test $F_1$ ($0.010$). Among the
+% iterative kernel models, Stripe-Kernel-L has lower run-to-run variability
+% ($0.024$) than Stripe-Kernel-C ($0.033$) and SGD-Ridge-Kernel ($0.034$), but it
+% does not match SVM-Kernel in either final quality or stability. Thus, the
+% kernelized results should be read as a small-scale robustness check rather than
+% as evidence that the stability advantage of the linear $L$-system uniformly
+% transfers to the kernel setting.
+
+% \input{tables/TABLE_kernel_final_quality_run_to_run_stability.tex}
+
+
+
+% \subsection{Structural diagnostic of \texorpdfstring{$\varepsilon$}{epsilon}-sensitivity}
+% \label{subsec:structural-eps-diagnostic}
+
+% The tolerance parameter $\varepsilon$ in the $C$-system controls the width of the admissible stripe around each training constraint. In practice, the influence of this parameter may vary substantially across datasets. In this section we investigate whether this variation can be partially explained by structural properties of the training set.
+
+% Let $y_i\in\{-1,+1\}$ and let the linear model be $f_\theta(x_i)=\langle x_i,\theta\rangle$. For sample $i$, define the residual $\eta_i(\theta)=\langle x_i,\theta\rangle-y_i$. The $C$-system constraint requires $|\eta_i(\theta)|<\varepsilon$.
+
+% When this constraint is violated, the algorithm performs a correction step. In the notation used here, this step can be written as $\theta^{+}=\theta-\frac{\Psi_\varepsilon(\eta_i)}{\|x_i\|^2}x_i$, where $\Psi_\varepsilon(\eta_i)$ is the signed correction term determined by the $C$-system update rule. For a large violation, $\Psi_\varepsilon(\eta_i)=\eta_i$, and the update projects the active sample onto the central hyperplane of the stripe, since $\eta_i(\theta^{+})=\eta_i(\theta)-\eta_i(\theta)=0$.
+
+% The same correction also affects the residuals of other samples. For another sample $j$, we have $\eta_j(\theta^{+})-\eta_j(\theta)=-\frac{\langle x_j,x_i\rangle}{\|x_i\|^2}\Psi_\varepsilon(\eta_i)$. This motivates the directed interaction coefficient $G_{ji}=\frac{\langle x_j,x_i\rangle}{\|x_i\|^2+\rho}$, where $\rho>0$ is a small stabilizing constant. Then $\Delta \eta_j\approx -G_{ji}\Psi_\varepsilon(\eta_i)$. Thus, $|G_{ji}|$ measures how strongly a correction performed for sample $i$ propagates to sample $j$.
+
+% However, the magnitude of $G_{ji}$ alone does not determine whether this interaction is beneficial or harmful. A strong interaction may be aligned with the class labels, in which case a correction reducing the residual of one sample can also improve other samples. Conversely, a strong interaction may be label-conflicting, in which case a correction reducing the residual of one sample may deteriorate the signed margin or residual of another sample.
+
+% To distinguish these two cases, we consider the signed interaction $A_{ji}=G_{ji}y_i y_j$. Positive values of $A_{ji}$ correspond to interactions that are geometrically aligned with the label structure, whereas negative values indicate potentially label-conflicting interactions. Therefore, $A_{ji}$ should be interpreted as a structural diagnostic of whether correction propagation is likely to be aligned or conflicting with the labels. Importantly, this condition is not equivalent to simply checking whether two labels are equal. For example, if $y_i=y_j$ and $G_{ji}>0$, the interaction is aligned. If $y_i\neq y_j$ and $G_{ji}<0$, then $G_{ji}y_i y_j>0$ as well, and the geometry is also aligned with class separation. A conflict occurs when the sign of the geometric interaction is inconsistent with the product of the labels.
+
+% Since weak interactions are unlikely to dominate the update dynamics, we focus on the strongest off-diagonal interactions. Let $\mathcal{T}_{0.1}$ denote the set of pairs $(j,i)$ for which $|G_{ji}|$ lies above the 90th percentile among all off-diagonal interactions. Due to possible ties, this corresponds approximately to the largest $10\%$ of interactions. We define the top-conflict score as $C_{\mathrm{top}}(G,y)=\frac{\sum_{(j,i)\in \mathcal{T}_{0.1}}[-G_{ji}y_i y_j]_+}{\sum_{(j,i)\in \mathcal{T}_{0.1}}|G_{ji}|}$, where $[z]_+=\max(z,0)$.
+
+% The corresponding top structural conflict statistic is $S_{\mathrm{top}}(G,y)=\overline{|G_{ji}|}_{(j,i)\in \mathcal{T}_{0.1}}\cdot C_{\mathrm{top}}(G,y)$. Equivalently, this statistic can be written as $S_{\mathrm{top}}(G,y)=\frac{1}{|\mathcal{T}_{0.1}|}\sum_{(j,i)\in \mathcal{T}_{0.1}}[-G_{ji}y_i y_j]_+$. This statistic combines two factors: the strength of the dominant interactions and their disagreement with the labels.
+
+% Our hypothesis is that the $C$-system becomes more sensitive to $\varepsilon$ not merely when samples are strongly coupled, but when the dominant interactions contain a substantial label-conflicting component. In such cases, changing $\varepsilon$ changes the set and intensity of active corrections, and these corrections may interfere with each other through strong conflicting interactions.
+
+% \paragraph{Experimental protocol.}
+
+% We evaluated this hypothesis on $67$ binary OpenML datasets. All structural quantities were computed only on the training set before fitting the model. For each dataset, we computed the interaction matrix $G$, the signed interactions $A_{ji}=G_{ji}y_i y_j$, the top-conflict statistic $S_{\mathrm{top}}(G,y)$, and several control structural measures: mean absolute interaction strength, conflict score over all off-diagonal pairs, structural conflict over all pairs, and the effective Gram condition number.
+
+% After computing the structural characteristics, we trained the linear $C$-system over the fixed grid $\varepsilon\in\{0.01,0.02,0.03,0.05,0.07,0.10,0.15,0.20,0.30,0.50,0.70,0.90\}$. The remaining $C$-system parameters, including $\delta$-ratio, $\beta$, regularization, and initialization mode, were tuned separately using only the training/validation protocol at a fixed reference value of $\varepsilon$, while the test set was kept for final evaluation. Thus, the experiment measured the effect of explicitly varying $\varepsilon$, rather than the effect of simultaneously changing all hyperparameters.
+
+% For each value of $\varepsilon$, the model was trained for a fixed number of epochs. The classification threshold was selected on the validation set and then applied to the test set. We measured sensitivity to $\varepsilon$ as the range of the $F_1$-score across the grid: $\mathrm{Sens}_{\mathrm{val}}=\max_{\varepsilon}F_1^{\mathrm{val}}(\varepsilon)-\min_{\varepsilon}F_1^{\mathrm{val}}(\varepsilon)$ and $\mathrm{Sens}_{\mathrm{test}}=\max_{\varepsilon}F_1^{\mathrm{test}}(\varepsilon)-\min_{\varepsilon}F_1^{\mathrm{test}}(\varepsilon)$. Small values of these quantities indicate that the final quality is relatively insensitive to the choice of $\varepsilon$, whereas large values indicate that the tolerance parameter substantially affects the result.
+
+% Each dataset was evaluated with several training repeats. However, the final correlation analysis was performed at the dataset level. This is important because $G$, $S_{\mathrm{top}}$, and the effective Gram condition number are identical across repeats of the same dataset. Therefore, repeat-level results were first aggregated to dataset-level observations before computing correlations.
+
+% \paragraph{Results.}
+
+% The experiment was successfully completed on all $67$ datasets. The mean validation sensitivity was $0.107$ for the hard group and $0.152$ for the not-hard group. The mean test sensitivity was $0.134$ for the hard group and $0.184$ for the not-hard group. A Mann--Whitney test did not indicate a statistically significant difference between the groups: $p_{\mathrm{val}}\approx 0.627$ and $p_{\mathrm{test}}\approx 0.493$. Thus, membership in the hard or not-hard group does not by itself explain $C$-system sensitivity to $\varepsilon$.
+
+% We then examined the relationship between structural characteristics of the training set and sensitivity to $\varepsilon$. The effective Gram condition number, used as a global measure of interaction conditioning, showed almost no rank correlation with sensitivity: $\rho_{\mathrm{Spearman}}\approx 0.097$ for validation sensitivity and $\rho_{\mathrm{Spearman}}\approx -0.020$ for test sensitivity.
+
+% In contrast, the top structural conflict statistic $S_{\mathrm{top}}(G,y)$ showed a substantially stronger rank association with sensitivity. Its Spearman correlation with validation sensitivity was $\rho_{\mathrm{Spearman}}\approx 0.420$, $p\approx 0.000403$, and its correlation with test sensitivity was $\rho_{\mathrm{Spearman}}\approx 0.374$, $p\approx 0.001831$. The same qualitative pattern was observed for the version of the statistic computed with the bias term included: the corresponding Spearman correlations were approximately $0.402$ for validation sensitivity and $0.369$ for test sensitivity. By contrast, structural conflict computed over all pairs, mean interaction strength, and conflict score over all pairs showed weaker associations with sensitivity.
+
+% \begin{table}[h]
+% \centering
+% \caption{Correlation between structural characteristics and validation sensitivity to $\varepsilon$ across 67 dataset-level observations.}
+% \label{tab:eps-val-corr}
+% \begin{tabular}{lccc}
+% \hline
+% Structural measure & $n$ & Spearman $\rho$ & $p$-value \\
+% \hline
+% $S_{\mathrm{top}}$ without bias & 67 & 0.420 & 0.000403 \\
+% $S_{\mathrm{top}}$ with bias    & 67 & 0.402 & 0.000751 \\
+% Structural conflict, all pairs  & 67 & 0.217 & 0.0775 \\
+% Mean interaction strength       & 67 & 0.189 & 0.125 \\
+% Effective Gram condition number & 67 & 0.097 & 0.436 \\
+% Conflict score, all pairs       & 67 & -0.029 & 0.818 \\
+% \hline
+% \end{tabular}
+% \end{table}
+
+% \begin{table}[h]
+% \centering
+% \caption{Correlation between structural characteristics and test sensitivity to $\varepsilon$ across 67 dataset-level observations.}
+% \label{tab:eps-test-corr}
+% \begin{tabular}{lccc}
+% \hline
+% Structural measure & $n$ & Spearman $\rho$ & $p$-value \\
+% \hline
+% $S_{\mathrm{top}}$ without bias & 67 & 0.374 & 0.001831 \\
+% $S_{\mathrm{top}}$ with bias    & 67 & 0.369 & 0.002150 \\
+% Structural conflict, all pairs  & 67 & 0.138 & 0.266 \\
+% Mean interaction strength       & 67 & 0.135 & 0.276 \\
+% Effective Gram condition number & 67 & -0.020 & 0.872 \\
+% Conflict score, all pairs       & 67 & -0.045 & 0.715 \\
+% \hline
+% \end{tabular}
+% \end{table}
+
+% As an additional descriptive check, we grouped datasets by the value of $S_{\mathrm{top}}$: $S_{\mathrm{top}}<0.30$, $0.30\leq S_{\mathrm{top}}<1.00$, and $S_{\mathrm{top}}\geq 1.00$. The results are shown in Table~\ref{tab:eps-stop-groups}. The mean validation sensitivity increased from $0.105$ in the low-$S_{\mathrm{top}}$ group to $0.217$ in the high-$S_{\mathrm{top}}$ group. The mean test sensitivity increased from $0.136$ to $0.233$. This descriptive grouping is consistent with the correlation analysis: datasets with stronger label-conflicting dominant interactions tend to exhibit greater sensitivity to $\varepsilon$.
+
+% \begin{table}[h]
+% \centering
+% \caption{Sensitivity to $\varepsilon$ grouped by top structural conflict $S_{\mathrm{top}}$.}
+% \label{tab:eps-stop-groups}
+% \begin{tabular}{lccccc}
+% \hline
+% $S_{\mathrm{top}}$ range & $n$ & Val mean & Val median & Test mean & Test median \\
+% \hline
+% $S_{\mathrm{top}}<0.30$              & 28 & 0.105 & 0.094 & 0.136 & 0.109 \\
+% $0.30\leq S_{\mathrm{top}}<1.00$     & 25 & 0.142 & 0.091 & 0.182 & 0.151 \\
+% $S_{\mathrm{top}}\geq 1.00$          & 14 & 0.217 & 0.203 & 0.233 & 0.231 \\
+% \hline
+% \end{tabular}
+% \end{table}
+
+% \paragraph{Interpretation.}
+
+% These results do not imply that $S_{\mathrm{top}}$ determines the optimal value of $\varepsilon$. The experiment is correlational and should be interpreted as an empirical diagnostic rather than as a causal theorem. Nevertheless, the results support the following interpretation: the tolerance parameter $\varepsilon$ becomes important not merely when samples are strongly coupled geometrically, but when the strongest couplings contain a substantial label-conflicting component.
+
+% Global interaction strength or conditioning describes the potential magnitude of correction propagation, but it does not distinguish whether this propagation is aligned or conflicting with respect to the labels. The signed top-conflict statistic $S_{\mathrm{top}}(G,y)$ captures this distinction and is therefore more informative as a pre-training diagnostic of potential $\varepsilon$-sensitivity.
+
+% Practically, low values of $S_{\mathrm{top}}$ suggest that the model is less likely to be fragile with respect to the tolerance choice, so a coarser $\varepsilon$-grid may be sufficient. High values of $S_{\mathrm{top}}$ warn that the tolerance parameter should be tuned more carefully, because the final quality may change substantially across the grid.
+
+% Thus, the experiment supports the refined view that the influence of $\varepsilon$ is not purely arbitrary, but is related to the structure of the training set, and in particular to the presence of strong label-conflicting interactions.
+
+
+
+\subsection{Structural diagnostic of \texorpdfstring{$\varepsilon$}{epsilon}-sensitivity}
+\label{subsec:structural-eps-diagnostic}
+
+The tolerance parameter $\varepsilon$ in the $C$-system controls the width of the admissible stripe around each training constraint. In practice, the influence of this parameter may vary substantially across datasets. In this section we investigate whether this variation can be partially explained by structural properties of the training set.
+
+Let $y_i\in{-1,+1}$ and let the linear model be $f_\theta(x_i)=\langle x_i,\theta\rangle$. For sample $i$, define the residual $\eta_i(\theta)=\langle x_i,\theta\rangle-y_i$. The $C$-system constraint requires $|\eta_i(\theta)|<\varepsilon$.
+
+When this constraint is violated, the algorithm performs a correction step. In the notation used here, this step can be written as $\theta^{+}=\theta-\frac{\Psi_\varepsilon(\eta_i)}{|x_i|^2}x_i$, where $\Psi_\varepsilon(\eta_i)$ is the signed correction term determined by the $C$-system update rule. For a large violation, $\Psi_\varepsilon(\eta_i)=\eta_i$, and the update projects the active sample onto the central hyperplane of the stripe, since $\eta_i(\theta^{+})=\eta_i(\theta)-\eta_i(\theta)=0$.
+
+The same correction also affects the residuals of other samples. For another sample $j$, we have $\eta_j(\theta^{+})-\eta_j(\theta)=-\frac{\langle x_j,x_i\rangle}{|x_i|^2}\Psi_\varepsilon(\eta_i)$. This motivates the directed interaction coefficient $G_{ji}=\frac{\langle x_j,x_i\rangle}{|x_i|^2+\rho}$, where $\rho>0$ is a small stabilizing constant. Then $\Delta \eta_j\approx -G_{ji}\Psi_\varepsilon(\eta_i)$. Thus, $|G_{ji}|$ measures how strongly a correction performed for sample $i$ propagates to sample $j$.
+
+However, the magnitude of $G_{ji}$ alone does not determine whether this interaction is beneficial or harmful. A strong interaction may be aligned with the class labels, in which case a correction reducing the residual of one sample can also improve other samples. Conversely, a strong interaction may be label-conflicting, in which case a correction reducing the residual of one sample may deteriorate the signed margin or residual of another sample.
+
+To distinguish these two cases, we consider the signed interaction $A_{ji}=G_{ji}y_i y_j$. Positive values of $A_{ji}$ correspond to interactions that are geometrically aligned with the label structure, whereas negative values indicate potentially label-conflicting interactions. Therefore, $A_{ji}$ should be interpreted as a structural diagnostic of whether correction propagation is likely to be aligned or conflicting with the labels. Importantly, this condition is not equivalent to simply checking whether two labels are equal. For example, if $y_i=y_j$ and $G_{ji}>0$, the interaction is aligned. If $y_i\neq y_j$ and $G_{ji}<0$, then $G_{ji}y_i y_j>0$ as well, and the geometry is also aligned with class separation. A conflict occurs when the sign of the geometric interaction is inconsistent with the product of the labels.
+
+Since weak interactions are unlikely to dominate the update dynamics, we focus on the strongest off-diagonal interactions. Let $\mathcal{T}*{0.1}$ denote the set of pairs $(j,i)$ for which $|G*{ji}|$ lies above the 90th percentile among all off-diagonal interactions. Due to possible ties, this corresponds approximately to the largest $10%$ of interactions. We define the top-conflict score as $C_{\mathrm{top}}(G,y)=\frac{\sum_{(j,i)\in \mathcal{T}*{0.1}}[-G*{ji}y_i y_j]*+}{\sum*{(j,i)\in \mathcal{T}*{0.1}}|G*{ji}|}$, where $[z]_+=\max(z,0)$.
+
+The corresponding top structural conflict statistic is $S_{\mathrm{top}}(G,y)=\overline{|G_{ji}|}*{(j,i)\in \mathcal{T}*{0.1}}\cdot C_{\mathrm{top}}(G,y)$. Equivalently, this statistic can be written as $S_{\mathrm{top}}(G,y)=\frac{1}{|\mathcal{T}*{0.1}|}\sum*{(j,i)\in \mathcal{T}*{0.1}}[-G*{ji}y_i y_j]_+$. This statistic combines two factors: the strength of the dominant interactions and their disagreement with the labels.
+
+Our hypothesis is that the $C$-system becomes more sensitive to $\varepsilon$ not merely when samples are strongly coupled, but when the dominant interactions contain a substantial label-conflicting component. In such cases, changing $\varepsilon$ changes the set and intensity of active corrections, and these corrections may interfere with each other through strong conflicting interactions.
+
+\paragraph{Experimental protocol.}
+
+We evaluated this hypothesis on $67$ binary OpenML datasets. All structural quantities were computed only on the training set before fitting the model. For each dataset, we computed the interaction matrix $G$, the signed interactions $A_{ji}=G_{ji}y_i y_j$, the top-conflict statistic $S_{\mathrm{top}}(G,y)$, and several control structural measures: mean absolute interaction strength, conflict score over all off-diagonal pairs, structural conflict over all pairs, and the effective Gram condition number.
+
+After computing the structural characteristics, we trained the linear $C$-system over the fixed grid $\varepsilon\in{0.01,0.02,0.03,0.05,0.07,0.10,0.15,0.20,0.30,0.50,0.70,0.90}$. The remaining $C$-system parameters, including $\delta$-ratio, $\beta$, regularization, and initialization mode, were tuned separately using only the training/validation protocol at a fixed reference value of $\varepsilon$, while the test set was kept for final evaluation. Thus, the experiment measured the effect of explicitly varying $\varepsilon$, rather than the effect of simultaneously changing all hyperparameters.
+
+For each value of $\varepsilon$, the model was trained for a fixed number of epochs. The classification threshold was selected on the validation set and then applied to the test set. We measured sensitivity to $\varepsilon$ as the range of the $F_1$-score across the grid: $\mathrm{Sens}*{\mathrm{val}}=\max*{\varepsilon}F_1^{\mathrm{val}}(\varepsilon)-\min_{\varepsilon}F_1^{\mathrm{val}}(\varepsilon)$ and $\mathrm{Sens}*{\mathrm{test}}=\max*{\varepsilon}F_1^{\mathrm{test}}(\varepsilon)-\min_{\varepsilon}F_1^{\mathrm{test}}(\varepsilon)$. Small values of these quantities indicate that the final quality is relatively insensitive to the choice of $\varepsilon$, whereas large values indicate that the tolerance parameter substantially affects the result.
+
+Each dataset was evaluated with several training repeats. However, the final correlation analysis was performed at the dataset level. This is important because $G$, $S_{\mathrm{top}}$, and the effective Gram condition number are identical across repeats of the same dataset. Therefore, repeat-level results were first aggregated to dataset-level observations before computing correlations.
+
+\paragraph{Results.}
+
+The experiment was successfully completed on all $67$ binary OpenML datasets. We examined the relationship between structural characteristics of the training set and sensitivity to $\varepsilon$. The effective Gram condition number, used as a global measure of interaction conditioning, showed almost no rank correlation with sensitivity: $\rho_{\mathrm{Spearman}}\approx 0.097$ for validation sensitivity and $\rho_{\mathrm{Spearman}}\approx -0.020$ for test sensitivity.
+
+In contrast, the top structural conflict statistic $S_{\mathrm{top}}(G,y)$ showed a substantially stronger rank association with sensitivity. Its Spearman correlation with validation sensitivity was $\rho_{\mathrm{Spearman}}\approx 0.420$, $p\approx 0.000403$, and its correlation with test sensitivity was $\rho_{\mathrm{Spearman}}\approx 0.374$, $p\approx 0.001831$. The same qualitative pattern was observed for the version of the statistic computed with the bias term included: the corresponding Spearman correlations were approximately $0.402$ for validation sensitivity and $0.369$ for test sensitivity. By contrast, structural conflict computed over all pairs, mean interaction strength, and conflict score over all pairs showed weaker associations with sensitivity.
+
+\begin{table}[h]
+\centering
+\caption{Correlation between structural characteristics and validation sensitivity to $\varepsilon$ across 67 dataset-level observations.}
+\label{tab:eps-val-corr}
+\begin{tabular}{lccc}
+\hline
+Structural measure & $n$ & Spearman $\rho$ & $p$-value \\
+\hline
+$S_{\mathrm{top}}$ without bias & 67 & 0.420 & 0.000403 \\
+$S_{\mathrm{top}}$ with bias    & 67 & 0.402 & 0.000751 \\
+Structural conflict, all pairs  & 67 & 0.217 & 0.0775 \\
+Mean interaction strength       & 67 & 0.189 & 0.125 \\
+Effective Gram condition number & 67 & 0.097 & 0.436 \\
+Conflict score, all pairs       & 67 & -0.029 & 0.818 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Correlation between structural characteristics and test sensitivity to $\varepsilon$ across 67 dataset-level observations.}
+\label{tab:eps-test-corr}
+\begin{tabular}{lccc}
+\hline
+Structural measure & $n$ & Spearman $\rho$ & $p$-value \\
+\hline
+$S_{\mathrm{top}}$ without bias & 67 & 0.374 & 0.001831 \\
+$S_{\mathrm{top}}$ with bias    & 67 & 0.369 & 0.002150 \\
+Structural conflict, all pairs  & 67 & 0.138 & 0.266 \\
+Mean interaction strength       & 67 & 0.135 & 0.276 \\
+Effective Gram condition number & 67 & -0.020 & 0.872 \\
+Conflict score, all pairs       & 67 & -0.045 & 0.715 \\
+\hline
+\end{tabular}
+\end{table}
+
+As an additional descriptive check, we grouped datasets by the value of $S_{\mathrm{top}}$: $S_{\mathrm{top}}<0.30$, $0.30\leq S_{\mathrm{top}}<1.00$, and $S_{\mathrm{top}}\geq 1.00$. The results are shown in Table~\ref{tab:eps-stop-groups}. The mean validation sensitivity increased from $0.105$ in the low-$S_{\mathrm{top}}$ group to $0.217$ in the high-$S_{\mathrm{top}}$ group. The mean test sensitivity increased from $0.136$ to $0.233$. This descriptive grouping is consistent with the correlation analysis: datasets with stronger label-conflicting dominant interactions tend to exhibit greater sensitivity to $\varepsilon$.
+
+\begin{table}[h]
+\centering
+\caption{Sensitivity to $\varepsilon$ grouped by top structural conflict $S_{\mathrm{top}}$.}
+\label{tab:eps-stop-groups}
+\begin{tabular}{lccccc}
+\hline
+$S_{\mathrm{top}}$ range & $n$ & Val mean & Val median & Test mean & Test median \\
+\hline
+$S_{\mathrm{top}}<0.30$              & 28 & 0.105 & 0.094 & 0.136 & 0.109 \\
+$0.30\leq S_{\mathrm{top}}<1.00$     & 25 & 0.142 & 0.091 & 0.182 & 0.151 \\
+$S_{\mathrm{top}}\geq 1.00$          & 14 & 0.217 & 0.203 & 0.233 & 0.231 \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{Interpretation.}
+
+These results do not imply that $S_{\mathrm{top}}$ determines the optimal value of $\varepsilon$. The experiment is correlational and should be interpreted as an empirical diagnostic rather than as a causal theorem. Nevertheless, the results support the following interpretation: the tolerance parameter $\varepsilon$ becomes important not merely when samples are strongly coupled geometrically, but when the strongest couplings contain a substantial label-conflicting component.
+
+Global interaction strength or conditioning describes the potential magnitude of correction propagation, but it does not distinguish whether this propagation is aligned or conflicting with respect to the labels. The signed top-conflict statistic $S_{\mathrm{top}}(G,y)$ captures this distinction and is therefore more informative as a pre-training diagnostic of potential $\varepsilon$-sensitivity.
+
+Practically, low values of $S_{\mathrm{top}}$ suggest that the model is less likely to be fragile with respect to the tolerance choice, so a coarser $\varepsilon$-grid may be sufficient. High values of $S_{\mathrm{top}}$ warn that the tolerance parameter should be tuned more carefully, because the final quality may change substantially across the grid.
+
+Thus, the experiment supports the refined view that the influence of $\varepsilon$ is not purely arbitrary, but is related to the structure of the training set, and in particular to the presence of strong label-conflicting interactions.
+
+
+\subsection{Discussion}
+
+The experimental results support several key observations.
+
+First, Stripe demonstrates competitive classification performance across heterogeneous tabular datasets.
+Within the considered set of linear and \textcolor{red}{kernel-based baselines}, it consistently attains intermediate aggregate ranks and, on a subset of datasets, achieves top-ranked positions.
+While kernel SVM remains the strongest method on average in the \textcolor{red}{kernel-based benchmark}, Stripe maintains consistent performance across datasets under the same evaluation protocol.
+
+Second, the analysis of training dynamics shows that the majority of corrective updates occur during the early epochs, after which the process stabilizes.
+As training progresses, updates become increasingly sparse.
+This behavior is consistent with interpreting Stripe as a violation-driven method that performs corrections primarily to restore feasibility, rather than continuously optimizing a smooth global objective.
+
+Third, the ablation studies indicate that predictive performance remains stable under moderate variations of the structural parameters $\beta$ and $\delta$.
+Although these parameters influence the frequency and intensity of corrective updates, no clear systematic relationship emerges between the total number of updates and generalization performance.
+This indicates that the method does not rely on narrowly tuned hyperparameter regimes.
+
+Taken together, these findings characterize Stripe as a constraint-oriented alternative to gradient-based training, based on projection-like corrections of constraint violations.
+The empirical behavior is consistent with a finite-update regime once approximate feasibility is reached.
+
+Stripe and RFF-SGD rely on fundamentally different training principles.
+SGD performs incremental updates at every step and depends on learning-rate scheduling, whereas Stripe applies corrections only when violations occur and does not employ a learning rate in the conventional gradient-descent sense.
+Empirically, Stripe exhibits earlier stabilization of validation performance and a structured update pattern, while achieving comparable $F_1$ scores relative to RFF-SGD across datasets.
+
+We additionally examined performance in small-sample regimes ($n < 1000$).
+In this setting, Stripe increases its win rate against SVM from 37.7\% to 46.7\%, narrowing the performance gap.
+While the average rank remains comparable, this suggests that projection-based dynamics remain viable when the number of observations is limited.
+
+In addition to competitive mean performance, Stripe often exhibits lower variability of validation $F_1$ across epochs and folds in early training phases, reflecting more stable convergence behavior.
+
+\subsection{Limitations}
+
+Our study has several limitations.
+
+\paragraph{Feasibility assumptions and noisy regimes.}
+Classical finite-update guarantees for Stripe-type methods rely on strict feasibility of the underlying hyperslab system. 
+In our experiments, training is performed in an epoch-wise regime on a fixed finite dataset; consequently, both the $L$- and $C$-formulations induce finite systems of constraints. 
+However, finiteness of the constraint set does not imply strict feasibility. 
+In practical learning problems with label noise, outliers, or model mismatch, there may exist no parameter vector satisfying all constraints with a positive margin. 
+In such cases, the classical finite-termination interpretation of Yakubovich does not directly apply, and Stripe should instead be viewed as a violation-driven row-action method applied to a finite (possibly inconsistent) system. 
+Although the $\varepsilon$-insensitive and multizone variants mitigate oscillations and improve robustness in such regimes, a systematic theory and principled parameter selection for explicitly infeasible systems remain open problems.
+
+\paragraph{Hyperparameter selection and comparability to baselines.}
+Stripe replaces learning-rate tuning with structural parameters such as $\varepsilon$, $\delta$, and $\beta$ (and regularization or decay when enabled). 
+Although our ablation studies suggest moderate sensitivity, these parameters still require calibration and can affect both predictive accuracy and the number of corrective updates, thereby influencing runtime. 
+In addition, our evaluation relies on a limited hyperparameter-optimization budget, and relative rankings may shift under more extensive tuning.
+
+\paragraph{Kernel scalability.}
+The kernelized variants require storing and updating Gram-type structures whose memory and computational costs grow with the dictionary size. 
+In the simplest batch setting (dictionary equal to all training points), this results in quadratic memory growth and may limit applicability to large-scale datasets. 
+While caching and epoch-wise updates reduce computational overhead, scalable dictionary management strategies, budget maintenance schemes, or low-rank approximations are required for larger problems.
+
+\paragraph{Scope of models and tasks.}
+We focus on binary classification with linear models and RBF-kernel expansions. 
+Extensions to regression and multiclass classification are conceptually straightforward within the same projection-based framework and can be implemented using appropriate constraint formulations (e.g., one-vs-rest schemes or task-specific tolerance constraints). 
+However, these extensions are not explored empirically in the present study and are left for future work.
+
+\section{Conclusion and Future Work}
+
+In this work, we revisited Yakubovich’s Stripe algorithms from the perspective of modern supervised learning and formulated them as projection-based methods for solving systems of hyperslab constraints. We showed that both relaxed optimality conditions ($L$-systems) and pointwise tolerance constraints ($C$-systems) naturally lead to a unified projection framework in which parameter updates are triggered exclusively by constraint violations.
+
+This formulation connects classical Stripe algorithms with contemporary machine learning paradigms, clarifies their relation to row-action methods such as the Kaczmarz algorithm, and adapts classical finite-update guarantees to the supervised learning setting under strict feasibility assumptions.
+
+We further introduced a kernel extension that transfers hyperslab constraints and projection updates to the space of kernel expansion coefficients, enabling nonlinear decision functions while preserving the geometric structure of the algorithm.
+
+Experimental evaluation on a diverse collection of OpenML tabular datasets demonstrates that Stripe achieves competitive predictive performance relative to strong linear baselines. The results reveal a characteristic violation-driven training dynamic, rapid stabilization of updates, and moderate sensitivity to structural parameters such as $\beta$ and $\delta$.
+
+At the same time, Stripe is a feasibility-oriented method rather than a probabilistic model, and its performance depends on appropriate tolerance selection. While tree-based ensembles often attain higher aggregate rankings, Stripe provides a geometrically interpretable and update-sparse alternative to gradient-based optimization.
+
+\textcolor{red}{
+A systematic numerical comparison between Stripe algorithms,
+YAVA/perceptron-type procedures, and classical optimization
+solvers such as least-squares and simplex-type methods remains
+an interesting direction for future work, since these approaches
+correspond to different but closely related problem formulations.
+}
+
+Future research directions include theoretical analysis in explicitly noisy and infeasible regimes, adaptive selection of tolerance parameters, and the exploration of projection-based training in more complex model classes.
+
+A particularly promising direction is the use of Stripe-type row-action updates as inner solvers in Gauss–Newton and Natural Gradient methods. Recent work~\cite{goldshlager2025worth} has shown that randomized block Kaczmarz and related solvers can efficiently handle the mini-batch linear least-squares subproblems arising in such settings. In this context, each row corresponds to a hyperplane constraint of the form $j_i^\top \Delta\theta = r_i$, and classical row-action methods enforce exact satisfaction of these constraints. Replacing hyperplane projections with stripe constraints of the form
+$
+| j_i^\top \Delta\theta - r_i | \le \varepsilon \|j_i\|
+$
+would yield a tolerance-aware row-action least-squares solver with a geometrically interpretable dead-zone parameter $\varepsilon$. Such an approach may help suppress small inconsistencies caused by stochastic noise and linearization error in neural network training, while preserving the computational advantages of row-wise updates.
+
+\section*{Acknowledgements}
+\textbf{Do not} include acknowledgements in the initial version of the paper submitted for blind review.
+
+\section*{Impact Statement}
+
+
+\newpage
+\appendix
+\onecolumn
+\section{Appendix}
+\label{sec:appendix}
+\section{Computational Aspects and Implementation}
+\label{sec:implementation}
+
+This section summarizes the implementation details of the proposed Stripe-based methods.
+Across all variants, we distinguish between
+(i) the construction and update of the constraint system from data
+and (ii) the projection-based correction steps that enforce feasibility up to a prescribed tolerance.
+
+\subsection{Linear $L$-system (online and cumulative settings)}
+\label{subsec:impl_linear_L}
+
+The linear $L$-system is implemented using cumulative statistics.
+Given samples $(x_i, s_i)$ (with $s_i\in\{-1,+1\}$ in classification),
+the algorithm maintains running estimates of the empirical second-order matrix
+and the correlation vector,
+$
+A^{(m)} \approx \frac{1}{m}\sum_{i=1}^m x_i x_i^\top,
+\qquad
+b^{(m)} \approx \frac{1}{m}\sum_{i=1}^m s_i x_i .
+$
+In the implementation, these statistics are updated online using standard averaging recursions.
+After each update, a small number of Stripe projection steps is performed over parameter coordinates
+(i.e., by iterating over rows $A^{(m)}_{h\cdot}$).
+
+\paragraph{Operating modes.}
+The implementation supports three practical operating modes:
+\emph{single} (statistics constructed from the current sample only),
+\emph{cumulative} (statistics averaged over all observed samples),
+and \emph{epoch-wise} passes over a fixed dataset with shuffling.
+These modes differ only in how the running statistics are updated;
+the projection step itself remains unchanged.
+
+
+\paragraph{Bias term.}
+When enabled, a constant feature is appended to each input vector,
+allowing the bias parameter to be learned jointly with the weights.
+
+% ------------------------------------------------------------
+\subsection{Linear $C$-system (multizone correction)}
+\label{subsec:impl_linear_C}
+
+The linear $C$-system enforces pointwise constraints on the prediction error.
+For a signed label $s_i\in\{-1,+1\}$ and prediction $p_i=\langle w, x_i\rangle$,
+the residual is defined as $\eta_i = p_i - s_i$.
+A piecewise multizone correction rule is applied,
+controlled by the tolerance $\varepsilon>0$,
+buffer width $\delta>0$, and relaxation parameter $\beta$.
+The update is activated only when $|\eta_i|\ge \varepsilon$
+and follows a three-zone scheme:
+projection onto the centerline for large violations,
+reflection near the boundary,
+and a relaxed correction within the buffer zone.
+
+\paragraph{Regularization.}
+The linear $C$-system may optionally be stabilized using multiplicative weight decay.
+In the current implementation, weight decay is applied after processing each individual constraint,
+which preserves the explicit and modular structure of the projection-based update.
+
+
+\subsection{Kernelized $L$-system}
+\label{subsec:impl_kernel_L}
+
+The kernelized $L$-system is implemented in the space of expansion coefficients
+$\alpha\in\mathbb{R}^M$.
+As new samples arrive, an implicit analogue of the Gram statistics
+is constructed via kernel Gram matrices.
+Between data acquisition steps, optimization proceeds in an epoch-wise manner:
+one epoch corresponds to a full pass over all current constraints
+with random reshuffling.
+To reduce computational overhead, system matrices and row norms are cached
+and recomputed only when new samples are added.
+
+
+\subsection{Kernelized $C$-system}
+\label{subsec:impl_kernel_C}
+
+The kernelized $C$-system is likewise implemented in the coefficient space $\alpha$.
+Each new sample extends the kernel Gram matrix and introduces a new inequality constraint.
+Optimization proceeds epoch-wise by iterating over constraints in random order
+and applying the same multizone correction rule as in the linear case,
+with optional multiplicative decay applied prior to constraint evaluation.
+This preserves the geometric interpretation of the updates
+as projection-like corrections within a tolerance band.
+
+\begin{rmk}
+    All reported experiments employ feature scaling prior to training (and, when enabled, an appended bias feature), since the step size of projection-based methods is sensitive to feature norms. 
+\end{rmk}
+
+
+% \end{document}
+% To print the credit authorship contribution details
+% \printcredits
+
+%% Loading bibliography style file
+% \bibliographystyle{model1-num-names}
+\bibliographystyle{cas-model2-names}
+
+% Loading bibliography database
+\bibliography{cas-refs}
+
+% Biography
+%\bio{}
+% Here goes the biography details.
+%\endbio
+
+%\bio{pic1}
+% Here goes the biography details.
+%\endbio
+
+\end{document}
+
