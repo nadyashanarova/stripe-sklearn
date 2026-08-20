@@ -14,6 +14,12 @@ is violated, using a finite-update projection step rather than
 iterative gradient descent. This gives training dynamics that don't
 depend on a learning rate or a learning-rate schedule.
 
+Our new article "Beyond gradient descent: Yakubovich’s stripe algorithms for finite-update learning" is now officially online.
+The publisher gave us a special link for 50 days of free access (no registration required). You can read or download it here before September 30, 2026:
+Our personalized Share Link: https://authors.elsevier.com/a/1nbC3c8EX-r6k
+
+We would love to hear your feedback!
+
 ## What it implements
 
 Yakubovich formulated learning as satisfying a system of linear
